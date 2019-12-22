@@ -69,7 +69,8 @@ $(document).ready(function(){
             },
             url: "https://www.googleapis.com/upload/drive/v3/files",
             data:{
-                uploadType:"media"
+                uploadType:"media",
+                name:upload.getName(),
             },
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
