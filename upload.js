@@ -8,7 +8,7 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive";
     var access_token= "";
     var client_id = "968027827531-mb60n4enbs2a8enarbj219qs816o444r.apps.googleusercontent.com"// replace it with your client id;
-    
+    var upload
 
     $.ajax({
         type: 'POST',
@@ -109,7 +109,7 @@ $(document).ready(function(){
 
     $("#upload").on("click", function (e) {
         var file = $("#files")[0].files[0];
-        var upload = new Upload(file);
+        upload = new Upload(file);
     
         // maby check size or type here with upload.getSize() and upload.getType()
     
