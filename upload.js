@@ -3,11 +3,11 @@ $(document).ready(function(){
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-    const redirect_uri = "" // replace with your redirect_uri;
-    const client_secret = ""; // replace with your client secret
+    const redirect_uri = "backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
+    const client_secret = "IfbKmGBAXregYvn-GZD8PKX_"; // replace with your client secret
     const scope = "https://www.googleapis.com/auth/drive";
     var access_token= "";
-    var client_id = ""// replace it with your client id;
+    var client_id = "774704742314-dr9ck0r56h63ums0urlmfutqel0d0aar.apps.googleusercontent.com"// replace it with your client id;
     
 
     $.ajax({
