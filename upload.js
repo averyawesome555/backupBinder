@@ -95,7 +95,6 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
-        console.log(formData.text())
     };
     
     Upload.prototype.progressHandling = function (event) {
