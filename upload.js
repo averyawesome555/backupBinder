@@ -7,7 +7,7 @@ $(document).ready(function(){
     const client_secret = "izv22XAn2LV8YwkSPW1zDw3N"; // replace with your client secret
     const scope = "https://www.googleapis.com/auth/drive";
     var access_token= "";
-    var client_id = "687773471612-bp0cljem86nss38p0b48f4n2ct24h46o.apps.googleusercontent.com"// replace it with your client id;
+    var client_id = "687773471612-bp0cljem86nss38p0b48f4n2ct24h46o.apps.googleusercontent.com";// replace it with your client id;
     
 
     $.ajax({
@@ -22,7 +22,7 @@ $(document).ready(function(){
         dataType: "json",
         success: function(resultData) {
            
-           console.log(resultData) 
+           console.log(resultData); 
            localStorage.setItem("accessToken",resultData.access_token);
            localStorage.setItem("refreshToken",resultData.refreshToken);
            localStorage.setItem("expires_in",resultData.expires_in);
