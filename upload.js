@@ -56,23 +56,26 @@ $(document).ready(function(){
     };
     Upload.prototype.doUpload = function () {
       var metadata = {
-      'name': this.getName(), // Filename at Google Drive
+      'name': this.getName()+'.jpg', // Filename at Google Drive
       'mimeType': 'image/jpeg', // mimeType at Google Drive
+      'parents': ['### folder ID ###'], // Folder ID at Google Drive
       };
 
-      var accessToken = localStorage.getItem("accessToken") // Here gapi is used for retrieving the access token.
+      var accessToken = localStorage.getItem("accessToken"); // Here gapi is used for retrieving the access token.
       var form = new FormData();
-      form.append('metadata', new Blob([JSON.stringify(metadata)], {type: 'application/json'}));
+      form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
       form.append('file', this.file);
 
-      var xhr = new XMLHttpRequest();
-      xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media');
-      xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
-      xhr.responseType = 'json';
-      xhr.onload = () => {
-          console.log(xhr.response.id); // Retrieve uploaded file ID.
-      };
-      xhr.send(form);
+      fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+          method: 'POST',
+          headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
+          body: form,
+      }).then((res) => {
+          console.log(res.json())
+          return res.json();
+      }).then(function(val) {
+          console.log(val);
+      });
     };
     
     Upload.prototype.progressHandling = function (event) {
@@ -128,3 +131,26 @@ $(document).ready(function(){
 //     console.log(xhr.response.id); // Retrieve uploaded file ID.
 // };
 // xhr.send(form);
+
+
+// var metadata = {
+//     'name': this.getName()+'.jpg', // Filename at Google Drive
+//     'mimeType': 'image/jpeg', // mimeType at Google Drive
+//     'parents': ['### folder ID ###'], // Folder ID at Google Drive
+// };
+
+// var accessToken = localStorage.getItem("accessToken"); // Here gapi is used for retrieving the access token.
+// var form = new FormData();
+// form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+// form.append('file', this.file);
+
+// fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+//     method: 'POST',
+//     headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
+//     body: form,
+// }).then((res) => {
+//     console.log(json)
+//     return res.json();
+// }).then(function(val) {
+//     console.log(val);
+// });
