@@ -71,7 +71,6 @@ $(document).ready(function(){
           headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
           body: form,
       }).then((res) => {
-          console.log(res.json())
           return res.json();
       }).then(function(val) {
           console.log(val);
