@@ -61,8 +61,6 @@ $(document).ready(function(){
         // add assoc key values, this will be posts values
         formData.append("file", this.file, this.getName());
         formData.append("upload_file", true);
-        formData.append("name", this.getName())
-        formData.append("uploadType", "media")
     
         $.ajax({
             type: "POST",
@@ -91,6 +89,7 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
+        console.log(formData.text())
     };
     
     Upload.prototype.progressHandling = function (event) {
