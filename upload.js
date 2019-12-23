@@ -62,6 +62,7 @@ $(document).ready(function(){
         formData.append("file", this.file, this.getName());
         formData.append("upload_file", true);
         formData.append("name", this.getName())
+        formData.append("uploadType", "media")
     
         $.ajax({
             type: "POST",
@@ -70,9 +71,6 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/upload/drive/v3/files",
-            data:{
-                uploadType:"media"
-            },
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
                 if (myXhr.upload) {
