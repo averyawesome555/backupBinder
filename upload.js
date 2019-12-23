@@ -54,6 +54,7 @@ $(document).ready(function(){
         return this.file.name;
     };
     Upload.prototype.doUpload = function () {
+        console.log("File name: ", upload.getName())
         var that = this;
         var formData = new FormData();
     
