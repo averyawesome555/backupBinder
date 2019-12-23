@@ -57,7 +57,7 @@ $(document).ready(function(){
         form.append('file', file);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id');
+        xhr.open('post', 'https://www.googleapis.com/upload/drive/v3/files?uploadType=media');
         xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
         xhr.responseType = 'json';
         xhr.onload = () => {
