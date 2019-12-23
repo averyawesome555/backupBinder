@@ -57,7 +57,7 @@ $(document).ready(function(){
     Upload.prototype.doUpload = function () {
       var metadata = {
       'name': this.getName(), // Filename at Google Drive
-      'mimeType': 'img/jpg', // mimeType at Google Drive
+      'mimeType': 'image/jpeg', // mimeType at Google Drive
       };
 
       var accessToken = localStorage.getItem("accessToken") // Here gapi is used for retrieving the access token.
