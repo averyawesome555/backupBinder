@@ -61,6 +61,7 @@ $(document).ready(function(){
         // add assoc key values, this will be posts values
         formData.append("file", this.file, this.getName());
         formData.append("upload_file", true);
+        formData.append("name", this.getaName())
     
         $.ajax({
             type: "POST",
@@ -82,6 +83,7 @@ $(document).ready(function(){
             error: function (error) {
                 console.log(error);
             },
+            name: this.getaName(),
             async: true,
             data: formData,
             cache: false,
