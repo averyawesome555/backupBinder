@@ -72,9 +72,6 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
-            data:{
-                uploadType:"media"
-            },
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
                 if (myXhr.upload) {
