@@ -56,7 +56,7 @@ $(document).ready(function(){
         var that = this;
         var formData = new FormData();
         var metadata = {
-            'name': "test", // Filename at Google Drive
+            'name': this.getName(), // Filename at Google Drive
             'mimeType': this.getType(), // mimeType at Google Drive
         };
     
