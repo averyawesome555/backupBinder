@@ -53,41 +53,25 @@ $(document).ready(function(){
         return this.file.name;
     };
     Upload.prototype.doUpload = function () {
-        var that = this;
-        var formData = new FormData();
-    
-        // add assoc key values, this will be posts values
-        formData.append("file", this.file, this.getName());
-        formData.append("upload_file", true);
-        //formData.append("name", this.getNam());
-        formData.append("title", this.getName())
-    
-        $.ajax({
-            type: "POST",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
-            },
-            url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=media",
-            xhr: function () {
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) {
-                    myXhr.upload.addEventListener('progress', that.progressHandling, false);
-                }
-                return myXhr;
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (error) {
-                console.log(error);
-            },
-            async: true,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
+        var metadata = {
+            'name': this.getName(), // Filename at Google Drive
+            'mimeType': this.getType(), // mimeType at Google Drive
+            'parents': ['### folder ID ###'], // Folder ID at Google Drive
+        };
+
+        var accessToken = localStorage.getItem("accessToken"); // Here gapi is used for retrieving the access token.
+        var form = new FormData();
+        form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+        form.append('file', file);
+
+        fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id', {
+            method: 'POST',
+            headers: new Headers({ 'Authorization': 'Bearer ' + accessToken }),
+            body: form,
+        }).then((res) => {
+            return res.json();
+        }).then(function(val) {
+            console.log(val);
         });
     };
     
@@ -105,7 +89,8 @@ $(document).ready(function(){
     };
 
     $("#upload").on("click", function (e) {
-        var file = $("#files")[0].files[0];
+        var fileContent64 = getBase64($("#files")[0].files[0]);
+        var file2 = new Blob([fileContent64], {type: 'image/jpeg'});
         var upload = new Upload(file);
     
         // maby check size or type here with upload.getSize() and upload.getType()
@@ -118,3 +103,14 @@ $(document).ready(function(){
 
     
 });
+
+function getBase64(file) {
+   var reader = new FileReader();
+   reader.readAsDataURL(file);
+   reader.onload = function () {
+     console.log("Image to base64: ", reader.result);
+   };
+   reader.onerror = function (error) {
+     console.log('Error: ', error);
+   };
+}
