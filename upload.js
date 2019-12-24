@@ -62,8 +62,7 @@ $(document).ready(function(){
     
         // add assoc key values, this will be posts values
         formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
-        formData.append("file", this.file, this.getName());
-        formData.append("upload_file", true);
+        formData.append("file", this.file);
     
         $.ajax({
             type: "POST",
