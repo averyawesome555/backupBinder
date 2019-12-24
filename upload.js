@@ -1,13 +1,12 @@
 $(document).ready(function(){
-    
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
-    const redirect_uri = "https://backupbinder.netlify.com/upload.html	" // replace with your redirect_uri;
+    const redirect_uri = "https://backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
     const client_secret = "vVkHKV4hswLANEHqI-CYCzX3"; // replace with your client secret
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
-    var client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"// replace it with your client id;
+    var client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
     
 
     $.ajax({
