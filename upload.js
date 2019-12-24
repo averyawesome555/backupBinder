@@ -56,7 +56,6 @@ $(document).ready(function(){
         var metadata = {
             'name': this.getName(), // Filename at Google Drive
             'mimeType': this.getType(), // mimeType at Google Drive
-            'parents': ['### folder ID ###'], // Folder ID at Google Drive
         };
 
         var accessToken = localStorage.getItem("accessToken"); // Here gapi is used for retrieving the access token.
