@@ -10,7 +10,7 @@ $(document).ready(function(){
 
      // scope of the project
 
-     var scope = "https://www.googleapis.com/auth/drive";
+     var scope = "https://www.googleapis.com/auth/drive.file";
 
      // the url to which the user is redirected to
 
