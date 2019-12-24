@@ -90,7 +90,7 @@ $(document).ready(function(){
 
     $("#upload").on("click", function (e) {
         var fileContent64 = getBase64($("#files")[0].files[0]);
-        var file2 = new Blob([fileContent64], {type: 'image/jpeg'});
+        var file = new Blob([fileContent64], {type: 'image/jpeg'});
         var upload = new Upload(file);
     
         // maby check size or type here with upload.getSize() and upload.getType()
