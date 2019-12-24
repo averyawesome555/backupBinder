@@ -4,10 +4,10 @@ $(document).ready(function(){
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const redirect_uri = "https://backupbinder.netlify.com/upload.html	" // replace with your redirect_uri;
-    const client_secret = "izv22XAn2LV8YwkSPW1zDw3N"; // replace with your client secret
-    const scope = "https://www.googleapis.com/auth/drive";
+    const client_secret = "vVkHKV4hswLANEHqI-CYCzX3"; // replace with your client secret
+    const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
-    var client_id = "687773471612-bp0cljem86nss38p0b48f4n2ct24h46o.apps.googleusercontent.com"// replace it with your client id;
+    var client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"// replace it with your client id;
     
 
     $.ajax({
