@@ -59,6 +59,8 @@ $(document).ready(function(){
         // add assoc key values, this will be posts values
         formData.append("file", this.file, this.getName());
         formData.append("upload_file", true);
+        //formData.append("name", this.getNam());
+        formData.append("title", this.getName())
     
         $.ajax({
             type: "POST",
@@ -66,10 +68,7 @@ $(document).ready(function(){
                 request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
                 
             },
-            url: "https://www.googleapis.com/upload/drive/v2/files",
-            data:{
-                uploadType:"media"
-            },
+            url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=media",
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
                 if (myXhr.upload) {
