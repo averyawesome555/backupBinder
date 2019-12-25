@@ -126,7 +126,6 @@ $(document).ready(function(){
                 console.log(error);
             },
             async: true,
-            data: formData,
             cache: false,
             contentType: false,
             processData: false,
