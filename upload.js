@@ -76,7 +76,7 @@ $(document).ready(function(){
     function createFolder(folderTitle) {
         var formData = new FormData();
         var metadata = {
-            "name": file.name, // Filename at Google Drive
+            "name": folderTitle, // Filename at Google Drive
             "mimeType": "application/vnd.google-apps.folder", // mimeType at Google Drive
         };
     
