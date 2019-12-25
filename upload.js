@@ -73,10 +73,10 @@ $(document).ready(function(){
         });
     };
     
-    function createFolder(folderTitle) {
+    function createFolder(folderName) {
         var formData = new FormData();
         var metadata = {
-            "name": folderTitle, // Filename at Google Drive
+            "name": folderName, // Filename at Google Drive
             "mimeType": "application/vnd.google-apps.folder", // mimeType at Google Drive
         };
     
@@ -92,6 +92,33 @@ $(document).ready(function(){
             url: "https://www.googleapis.com/upload/drive/v3/files",
             success: function (data) {
                 console.log("Succsesful folder creation")
+                console.log(data);
+            },
+            error: function (error) {
+                console.log("LLLLLLLL")
+                console.log(error);
+            },
+            async: true,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
+    
+    function getFolderID(folderName) {
+    
+        $.ajax({
+            type: "GET",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                
+            },
+            url: "https://www.googleapis.com/upload/drive/v3/files",
+            q: "mimeType = 'application/vnd.google-apps.folder'",
+            success: function (data) {
+                console.log("Succsesful folder info retreival")
                 console.log(data);
             },
             error: function (error) {
