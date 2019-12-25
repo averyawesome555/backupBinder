@@ -120,6 +120,14 @@ $(document).ready(function(){
             success: function (data) {
                 console.log("Succsesful folder info retreival")
                 console.log(data);
+                for (i = 0; i < data.files.length; i++) {
+                  if (data.files[i].name == folderName) {
+                      console.log("Folder id of ", folderName, " found: ", data.files[i].id)
+                      return data.files[i].id;
+                  }
+                }
+                
+                
             },
             error: function (error) {
                 console.log("LLLLLLLL")
@@ -137,7 +145,7 @@ $(document).ready(function(){
         var file = $("#files")[0].files[0];
         uploadFile(file);
         createFolder("bada bop boom pow");
-        getFolderID("NA")
+        getFolderID("bada bop boom pow")
     });
 
 
