@@ -37,7 +37,7 @@ $(document).ready(function(){
         return url.split("?")[0].split("#")[0];
     }   
 
-    function uploadFile(File file) {
+    function uploadFile(file) {
 //        var that = this;
         var formData = new FormData();
         var metadata = {
