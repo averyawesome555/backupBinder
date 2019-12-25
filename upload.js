@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
+    const code = urlParams.get("code");
     const redirect_uri = "https://backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
     const client_secret = "vVkHKV4hswLANEHqI-CYCzX3"; // replace with your client secret
     const scope = "https://www.googleapis.com/auth/drive.file";
@@ -10,7 +10,7 @@ $(document).ready(function(){
     
 
     $.ajax({
-        type: 'POST',
+        type: "POST",
         url: "https://www.googleapis.com/oauth2/v4/token",
         data: {code:code
             ,redirect_uri:redirect_uri,
@@ -41,12 +41,12 @@ $(document).ready(function(){
 //        var that = this;
         var formData = new FormData();
         var metadata = {
-            'name': file.name, // Filename at Google Drive
-            'mimeType': file.type, // mimeType at Google Drive
+            "name": file.name, // Filename at Google Drive
+            "mimeType": file.type, // mimeType at Google Drive
         };
     
         // add assoc key values, this will be posts values
-        formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
         formData.append("file", file);
     
         $.ajax({
@@ -57,7 +57,7 @@ $(document).ready(function(){
             },
             url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
             success: function (data) {
-                console.log("Succsesful upload?")
+                console.log("Succsesful file upload")
                 console.log(data);
             },
             error: function (error) {
@@ -73,22 +73,44 @@ $(document).ready(function(){
         });
     };
     
-//    Upload.prototype.progressHandling = function (event) {
-//        var percent = 0;
-//        var position = event.loaded || event.position;
-//        var total = event.total;
-//        var progress_bar_id = "#progress-wrp";
-//        if (event.lengthComputable) {
-//            percent = Math.ceil(position / total * 100);
-//        }
-//        // update progressbars classes so it fits your code
-//        $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
-//        $(progress_bar_id + " .status").text(percent + "%");
-//    };
+    function createFolder(folderTitle) {
+        var formData = new FormData();
+        var metadata = {
+            "name": file.name, // Filename at Google Drive
+            "mimeType": "application/vnd.google-apps.folder", // mimeType at Google Drive
+        };
+    
+        // add assoc key values, this will be posts values
+        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+    
+        $.ajax({
+            type: "POST",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                
+            },
+            url: "https://www.googleapis.com/drive/v3/files",
+            success: function (data) {
+                console.log("Succsesful folder creation")
+                console.log(data);
+            },
+            error: function (error) {
+                console.log("LLLLLLLL")
+                console.log(error);
+            },
+            async: true,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
 
     $("#upload").on("click", function (e) {
         var file = $("#files")[0].files[0];
         uploadFile(file);
+        createFolder("bada bop boom pow");
     });
 
 
