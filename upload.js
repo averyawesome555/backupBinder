@@ -89,7 +89,7 @@ $(document).ready(function(){
                 request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
                 
             },
-            url: "https://www.googleapis.com/drive/v3/files",
+            url: "https://www.googleapis.com/upload/drive/v3/files",
             success: function (data) {
                 console.log("Succsesful folder creation")
                 console.log(data);
