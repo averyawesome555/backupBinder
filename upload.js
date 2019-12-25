@@ -138,6 +138,7 @@ $(document).ready(function(){
         var file = $("#files")[0].files[0];
         uploadFile(file);
         createFolder("bada bop boom pow");
+        getFolderID("NA")
     });
 
 
