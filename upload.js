@@ -41,8 +41,8 @@ $(document).ready(function(){
 //        var that = this;
         var formData = new FormData();
         var metadata = {
-            'name': file.getName(), // Filename at Google Drive
-            'mimeType': file.getType(), // mimeType at Google Drive
+            'name': file.name, // Filename at Google Drive
+            'mimeType': file.type, // mimeType at Google Drive
         };
     
         // add assoc key values, this will be posts values
