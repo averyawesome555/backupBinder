@@ -116,7 +116,6 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/drive/v3/files/search?q=mimeType+%3D+%27application%2Fvnd.google-apps.folder%27+and+trashed+%3D+false",
-            q: "trashed+%3D+false",
             success: function (data) {
                 console.log("Succsesful folder info retreival")
                 console.log(data);
