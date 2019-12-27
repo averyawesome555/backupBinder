@@ -115,7 +115,7 @@ $(document).ready(function(){
                 request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
                 
             },
-            url: "https://www.googleapis.com/drive/v3/files",
+            url: "https://www.googleapis.com/drive/v3/files/search?q=mimeType+%3D+%27application%2Fvnd.google-apps.folder%27+and+trashed+%3D+false",
             q: "trashed+%3D+false",
             success: function (data) {
                 console.log("Succsesful folder info retreival")
