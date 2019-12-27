@@ -116,7 +116,7 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/drive/v3/files",
-            q: "mimeType=\'application/vnd.google-apps.folder\' and trashed = false",
+            q: "mimeType = 'application/vnd.google-apps.folder' and trashed = false",
             success: function (data) {
                 console.log("Succsesful folder info retreival")
                 console.log(data);
