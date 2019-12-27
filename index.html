@@ -103,7 +103,7 @@
       function listFiles() {
         gapi.client.drive.files.list({
           'pageSize': 1000,
-          'q': "trashed = false",
+          'q': "mimeType = 'application/vnd.google-apps.folder' and trashed = false",
           'fields': "nextPageToken, files(id, name)"
         }).then(function(response) {
           appendPre('Files:');
