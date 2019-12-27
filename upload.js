@@ -144,8 +144,8 @@ $(document).ready(function(){
     $("#upload").on("click", function (e) {
         var file = $("#files")[0].files[0];
         uploadFile(file);
-        createFolder("bada bop boom pow");
-        getFolderID("bada bop boom pow")
+        createFolder("showMeTheMoney");
+        getFolderID("showMeTheMoney")
     });
 
 
