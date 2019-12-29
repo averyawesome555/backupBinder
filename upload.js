@@ -21,7 +21,7 @@ $(document).ready(function(){
         dataType: "json",
         success: function(resultData) {
            
-            
+           console.log("Result Data: ", resultData);
            localStorage.setItem("accessToken",resultData.access_token);
            localStorage.setItem("refreshToken",resultData.refreshToken);
            localStorage.setItem("expires_in",resultData.expires_in);
@@ -115,9 +115,10 @@ $(document).ready(function(){
                 request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
                 
             },
-            url: "https://www.googleapis.com/drive/v3/files/search?q=mimeType+%3D+%27application%2Fvnd.google-apps.folder%27+and+trashed+%3D+false",
+            url: "https://www.googleapis.com/drive/v3/files",
+            q: "mimeType = 'application/vnd.google-apps.folder'",
             success: function (data) {
-                console.log("Succsesful folder info retreival")
+                console.log("Succsesful folder ID retreival")
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == folderName) {
@@ -139,12 +140,38 @@ $(document).ready(function(){
             timeout: 60000
         });
     }
+    
+    function getFileInfoByID(id) {
+           $.ajax({
+            type: "GET",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                
+            },
+            url: "https://www.googleapis.com/drive/v3/files/" + id,
+            success: function (data) {
+                console.log("Succsesful file/folder info retreival")
+                console.log(data);
+            },
+            error: function (error) {
+                console.log("LLLLLLLL")
+                console.log(error);
+            },
+            async: true,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
 
     $("#upload").on("click", function (e) {
-        var file = $("#files")[0].files[0];
-        uploadFile(file);
-        createFolder("showMeTheMoney");
-        getFolderID("showMeTheMoney")
+        //var file = $("#files")[0].files[0];
+        var newFolderName = window.prompt("Enter the name of the new class you want to add:");
+        createFolder(newFolderName);
+        getFileInfoByID(getFolderID(newFolderName));
+        //getFolderID(newFolderName);
+        //uploadFile(file);
     });
 
 
