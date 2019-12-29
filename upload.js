@@ -169,7 +169,7 @@ $(document).ready(function(){
         //var file = $("#files")[0].files[0];
         var newFolderName = window.prompt("Enter the name of the new class you want to add:");
         createFolder(newFolderName);
-        getFileInfoByID(getFolderID(newFolderName));
+        //getFileInfoByID(getFolderID(newFolderName));
         //getFolderID(newFolderName);
         //uploadFile(file);
     });
