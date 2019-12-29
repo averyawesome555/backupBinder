@@ -12,6 +12,11 @@
     <button id="signout_button" style="display: none;">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
+      
+    <div>
+     <input id="files" type="file" name="files[]" multiple/>
+     <button id="upload">Upload</button>
+   </div>
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -118,6 +123,29 @@
           }
         });
       }
+      
+      function uploadFile(file) {
+          console.log("Upload file method activated")
+        var formData = new FormData();
+        var metadata = {
+            "name": file.name, // Filename at Google Drive
+            "mimeType": file.type, // mimeType at Google Drive
+        };
+        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+        formData.append("file", file);
+          
+        gapi.client.drive.files.create({
+            resource: formData
+        }).then(function(response) {
+          console.log(response);
+        });
+      }
+        
+
+    $("#upload").on("click", function (e) {
+        var file = $("#files")[0].files[0];
+        uploadFile(file);
+    }
 
     </script>
 
