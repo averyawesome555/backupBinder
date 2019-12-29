@@ -43,7 +43,7 @@ $(document).ready(function(){
         var metadata = {
             "name": file.name, // Filename at Google Drive
             "mimeType": file.type, // mimeType at Google Drive
-            "parents": "1tcJzhi2fFOzY4vAHksCuc0_CxI88bn0g",
+            "parents": ["1tcJzhi2fFOzY4vAHksCuc0_CxI88bn0g"],
         };
     
         // add assoc key values, this will be posts values
