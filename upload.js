@@ -43,6 +43,7 @@ $(document).ready(function(){
         var metadata = {
             "name": file.name, // Filename at Google Drive
             "mimeType": file.type, // mimeType at Google Drive
+            "parents": "1tcJzhi2fFOzY4vAHksCuc0_CxI88bn0g",
         };
     
         // add assoc key values, this will be posts values
@@ -166,12 +167,12 @@ $(document).ready(function(){
     }
 
     $("#upload").on("click", function (e) {
-        //var file = $("#files")[0].files[0];
-        var newFolderName = window.prompt("Enter the name of the new class you want to add:");
-        createFolder(newFolderName);
-        //getFileInfoByID(getFolderID(newFolderName));
+        var file = $("#files")[0].files[0];
+        //var newFolderName = window.prompt("Enter the name of the new class you want to add:");
+//        createFolder(newFolderName);
+//        getFileInfoByID(getFolderID(newFolderName));
         //getFolderID(newFolderName);
-        //uploadFile(file);
+        uploadFile(file);
     });
 
 
