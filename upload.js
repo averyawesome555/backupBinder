@@ -202,7 +202,7 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createFolder("Backup Binder");
-                createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+                //createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
                 console.log("LLLLLLLL")
