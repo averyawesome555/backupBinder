@@ -100,20 +100,11 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
-        var metadata;
-        if (folderName == "Backup Binder") { // if first time login, adds Backup Binder folder to root of Drive
-            metadata = {
-            "name": folderName, 
-            "mimeType": "application/vnd.google-apps.folder",
-            };
-        }
-        else { // adds class folder into Backup Binder folder
-            metadata = {
+        var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
             "parents": [getFolderID("Backup Binder")],
             };
-        }
     
         // add assoc key values, this will be posts values
         formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
@@ -127,6 +118,44 @@ $(document).ready(function(){
             url: "https://www.googleapis.com/upload/drive/v3/files",
             success: function (data) {
                 console.log("Succsesful folder creation")
+                console.log(data);
+                // Only implement the JSON file solution if the getFolderID method is too uneliable
+//                if (folderName == "Backup Binder") {
+//                    // add entry {username, getFolderID("Backup Binder")} to masterFoldersIndex.json
+//                }
+            },
+            error: function (error) {
+                console.log("LLLLLLLL")
+                console.log(error);
+            },
+            async: true,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
+    
+    function createMasterFolder() {
+        var formData = new FormData();
+        var metadata = {
+            "name": "Backup Binder", 
+            "mimeType": "application/vnd.google-apps.folder",
+            };
+    
+        // add assoc key values, this will be posts values
+        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+    
+        $.ajax({
+            type: "POST",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                
+            },
+            url: "https://www.googleapis.com/upload/drive/v3/files",
+            success: function (data) {
+                console.log("Succsesful master folder creation")
                 console.log(data);
                 // Only implement the JSON file solution if the getFolderID method is too uneliable
 //                if (folderName == "Backup Binder") {
@@ -201,7 +230,7 @@ $(document).ready(function(){
                   }
                 }
                 console.log("first time login");
-                createFolder("Backup Binder");
+                createMasterFolder();
                 //createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
