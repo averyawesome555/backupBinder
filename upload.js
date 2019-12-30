@@ -103,6 +103,7 @@ $(document).ready(function(){
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
+            "parents": [getFolderID("Backup Binder")],
             };
     
         // add assoc key values, this will be posts values
@@ -175,29 +176,22 @@ $(document).ready(function(){
     }
     
     function getFolderID(folderName) {
-    
         $.ajax({
-            type: "GET",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
                 
             },
             url: "https://www.googleapis.com/drive/v3/files",
             q: "mimeType = 'application/vnd.google-apps.folder'",
             success: function (data) {
-                console.log("Succsesful folder ID retreival")
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
-                  if (data.files[i].name == folderName) {
-                      console.log("Folder id of ", folderName, " found: ", data.files[i].id)
-                      return data.files[i].id;
+                  if (data.files[i].name == "Backup Binder") {
+                    return data.files[i].id;
                   }
                 }
-                // the next 3 lines trigger if the user tries to upload a file to a nonexisttent folder.
-                console.log("Folder " + folderName + " does not exist. Creating it now...");
-                createFolder(folderName);
-                return getFolderID(folderName);
-                
+                console.log("Folder " + folderName + " not found!")
             },
             error: function (error) {
                 console.log("LLLLLLLL")
