@@ -42,7 +42,7 @@ $(document).ready(function(){
     $("#createFolder").on("click", function (e) {
         var newFolderName = window.prompt("Enter the name of the new class you want to add:");
         createFolder(newFolderName);
-    }
+    });
 
                           
                           
