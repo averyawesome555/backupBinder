@@ -103,7 +103,6 @@ $(document).ready(function(){
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": [getFolderID("Backup Binder")],
             };
     
         // add assoc key values, this will be posts values
