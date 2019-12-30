@@ -197,6 +197,7 @@ $(document).ready(function(){
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == "Backup Binder") {
                       console.log("NOT first time login")
+                      return;
                   }
                 }
                 console.log("first time login");
