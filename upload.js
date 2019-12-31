@@ -100,7 +100,7 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
-        var masterFolderID = [getFolderID("Backup Binder").toString()];
+        var masterFolderID = [getFolderID("Backup Binder")];
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
@@ -184,7 +184,6 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/drive/v3/files",
-            q: "mimeType = 'application/vnd.google-apps.folder'",
             success: function (data) {
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
