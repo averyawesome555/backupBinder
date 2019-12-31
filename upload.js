@@ -175,7 +175,7 @@ $(document).ready(function(){
         });
     }
     
-    function getFolderID(folderName) {
+    async function getFolderID(folderName) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
