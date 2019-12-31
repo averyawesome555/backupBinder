@@ -100,11 +100,13 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
-        var masterFolderID = [getFolderID("Backup Binder")];
+        var masterFolderID = getFolderID("Backup Binder");
+        console.log("Master folder ID: " + masterFolderID);
+        var masterFolderIDArr = [masterFolderID];
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": masterFolderID,
+            "parents": masterFolderIDArr,
             };
     
         // add assoc key values, this will be posts values
@@ -213,7 +215,6 @@ $(document).ready(function(){
                 
             },
             url: "https://www.googleapis.com/drive/v3/files",
-            q: "mimeType = 'application/vnd.google-apps.folder'",
             success: function (data) {
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
