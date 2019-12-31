@@ -176,7 +176,6 @@ $(document).ready(function(){
     }
     
     function getFolderID(folderName) {
-        var folderID;
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
@@ -189,7 +188,8 @@ $(document).ready(function(){
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == folderName) {
                     console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                    folderID = data.files[i].id;
+                    const response = await data.files[i].id;
+                    return response;
                   }
                 }
             },
@@ -203,8 +203,6 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
-        console.log("var folderID = " + folderID);
-        return folderID;
     }
     
     function isFirstTimeLogin() {
