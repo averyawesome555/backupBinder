@@ -226,6 +226,9 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
+                console.log("Begin waitaing");
+                wait(5);
+                console.log("End waiting");
                 createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
@@ -240,29 +243,13 @@ $(document).ready(function(){
         });
     }
     
-    function getFileInfoByID(id) {
-           $.ajax({
-            type: "GET",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
-            },
-            url: "https://www.googleapis.com/drive/v3/files/" + id,
-            success: function (data) {
-                console.log("Succsesful file/folder info retreival")
-                console.log(data);
-            },
-            error: function (error) {
-                console.log("LLLLLLLL")
-                console.log(error);
-            },
-            async: true,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });
-    }
+    function wait(s){ // this method works in milliseconds, so seconds (s) is multiplied by 1000
+       var start = new Date().getTime();
+       var end = start;
+       while(end < start + s*1000) {
+         end = new Date().getTime();
+       }
+}
 
         
 });
