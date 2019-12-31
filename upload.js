@@ -103,7 +103,7 @@ $(document).ready(function(){
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": [1U9s3KQZLWJEFGKe5U8uX63pInP9DjzbY],
+            "parents": ["1U9s3KQZLWJEFGKe5U8uX63pInP9DjzbY"],
             };
     
         // add assoc key values, this will be posts values
