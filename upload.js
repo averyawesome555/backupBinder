@@ -188,8 +188,7 @@ $(document).ready(function(){
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == folderName) {
                     console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                    const response = await data.files[i].id;
-                    return response;
+                    return data.files[i].id;
                   }
                 }
             },
