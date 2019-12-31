@@ -100,10 +100,11 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
+        var masterFolderID = "" + getFolderID("Backup Binder");
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": ["1U9s3KQZLWJEFGKe5U8uX63pInP9DjzbY"],
+            "parents": [masterFolderID],
             };
     
         // add assoc key values, this will be posts values
@@ -225,7 +226,7 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
-               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+                createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
                 console.log("LLLLLLLL")
