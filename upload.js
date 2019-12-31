@@ -187,13 +187,14 @@ $(document).ready(function(){
             success: function (data) {
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
-                  if (data.files[i].name == "Backup Binder") {
+                  if (data.files[i].name == folderName) {
+                    console.log("Folder ID of " + folderName + ": " + data.files[i].id);
                     return data.files[i].id;
                   }
                 }
-                console.log("Folder " + folderName + " not found!")
             },
             error: function (error) {
+                console.log("Folder " + folderName + " not found!")
                 console.log("LLLLLLLL")
                 console.log(error);
             },
@@ -224,7 +225,7 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
-                createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
                 console.log("LLLLLLLL")
