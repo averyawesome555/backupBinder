@@ -82,11 +82,11 @@ $(document).ready(function(){
             },
             url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
             success: function (data) {
-                console.log("Succsesful file upload")
+                console.log("Succsesful file upload");
                 console.log(data);
             },
             error: function (error) {
-                console.log("LLLLLLLL")
+                console.log("Error in uploadFile");
                 console.log(error);
             },
             async: true,
@@ -100,11 +100,11 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
-        var masterFolderID = "" + getFolderID("Backup Binder");
+        var masterFolderID = [getFolderID("Backup Binder").toString()];
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": [masterFolderID],
+            "parents": masterFolderID,
             };
     
         // add assoc key values, this will be posts values
@@ -126,7 +126,7 @@ $(document).ready(function(){
 //                }
             },
             error: function (error) {
-                console.log("LLLLLLLL")
+                console.log("Error in createFolder method");
                 console.log(error);
             },
             async: true,
@@ -164,7 +164,7 @@ $(document).ready(function(){
 //                }
             },
             error: function (error) {
-                console.log("LLLLLLLL")
+                console.log("Error in createMasterFolder method")
                 console.log(error);
             },
             async: true,
@@ -196,7 +196,6 @@ $(document).ready(function(){
             },
             error: function (error) {
                 console.log("Folder " + folderName + " not found!")
-                console.log("LLLLLLLL")
                 console.log(error);
             },
             async: true,
@@ -226,13 +225,13 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
-                console.log("Begin waitaing");
-                wait(5);
-                console.log("End waiting");
+//                console.log("Begin waitaing");
+//                wait(5);
+//                console.log("End waiting");
                 createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
-                console.log("LLLLLLLL")
+                console.log("Error in method isfirstTimeLogin")
                 console.log(error);
             },
             async: true,
