@@ -203,6 +203,7 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
+        console.log("var folderID = " + folderID);
         return folderID;
     }
     
