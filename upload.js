@@ -100,10 +100,15 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
+        var masterFolderID = getFolderID("Backup Binder");
+        masterFolderID.then(function(id) {
+           console.log("Master Folder ID:" + id);
+            masterFolderID = id;
+        });
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": [getFolderID("Backup Binder")],
+            "parents": [masterFolderID],
             };
     
         // add assoc key values, this will be posts values
