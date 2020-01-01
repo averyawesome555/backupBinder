@@ -104,6 +104,7 @@ $(document).ready(function(){
     function createFolder(folderName) {
         var formData = new FormData();
         getFolderID("Backup Binder"); // sets tempFolderID to ID of folder "Backup Binder"
+        console.log("tempFolderID in createFolder method: "+ tempFolderID);
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
