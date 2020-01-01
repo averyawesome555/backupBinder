@@ -241,6 +241,7 @@ $(document).ready(function(){
     }
     
     function setTempFolderID(id) {
+        console.log("setTempFolderID: " + id);
         tempFolderID = id;
     }
     
