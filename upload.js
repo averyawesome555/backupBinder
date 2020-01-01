@@ -7,6 +7,7 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
+    var tempFolderID;
     
 
     $.ajax({
@@ -55,17 +56,19 @@ $(document).ready(function(){
         var formData = new FormData();
         var metadata;
         if (folder == "") {
+            getFolderID("Other");
             metadata = {
             "name": file.name, 
             "mimeType": file.type, 
-            "parents": [getFolderID("Other")],
+            "parents": [tempFolderID],
             };
         }
         else {
+            getFolderID(folder);
             metadata = {
             "name": file.name, 
             "mimeType": file.type, 
-            "parents": [getFolderID(folder)],
+            "parents": [tempFolderID],
             };
         }
         
@@ -100,15 +103,11 @@ $(document).ready(function(){
     
     function createFolder(folderName) {
         var formData = new FormData();
-        var masterFolderID = getFolderID("Backup Binder");
-        masterFolderID.then(function(id) {
-           console.log("Master Folder ID:" + id);
-            masterFolderID = id;
-        });
+        getFolderID("Backup Binder"); // sets tempFolderID to ID of folder "Backup Binder"
         var metadata = {
             "name": folderName,
             "mimeType": "application/vnd.google-apps.folder",
-            "parents": [masterFolderID],
+            "parents": [tempFolderID],
             };
     
         // add assoc key values, this will be posts values
@@ -180,7 +179,7 @@ $(document).ready(function(){
         });
     }
     
-    async function getFolderID(folderName) {
+    function getFolderID(folderName) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
@@ -193,7 +192,7 @@ $(document).ready(function(){
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == folderName) {
                     console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                    return data.files[i].id;
+                    setTempFolderID(data.files[i].id); // basically the return statement. This is known as a callback function.
                   }
                 }
             },
@@ -221,7 +220,7 @@ $(document).ready(function(){
                 console.log(data);
                 for (i = 0; i < data.files.length; i++) {
                   if (data.files[i].name == "Backup Binder") {
-                      console.log("NOT first time login")
+                      console.log("NOT first time login");
                       return;
                   }
                 }
@@ -230,7 +229,7 @@ $(document).ready(function(){
                // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
-                console.log("Error in method isfirstTimeLogin")
+                console.log("Error in method isfirstTimeLogin");
                 console.log(error);
             },
             async: true,
@@ -239,6 +238,10 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
+    }
+    
+    function setTempFolderID(id) {
+        tempFolderID = id;
     }
     
     function wait(s){ // this method works in milliseconds, so seconds (s) is multiplied by 1000
