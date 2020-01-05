@@ -102,7 +102,7 @@ $(document).ready(function(){
     };
     
     function createFolder(folderName) {
-        getFolderID(folderName)
+        getFolderID("Backup Binder")
             .then(function(result) {
                 var formData = new FormData();
                 var metadata = {
