@@ -200,7 +200,7 @@ $(document).ready(function(){
                         resolve(data.files[i].id); 
                       } // end of if
                     } // end of for-loop      
-                }; // end of return promise
+                }); // end of return promise
             },
             error: function (error) {
                 console.log("Folder " + folderName + " not found!")
