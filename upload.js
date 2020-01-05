@@ -34,7 +34,7 @@ $(document).ready(function(){
     
     $("#uploadFile").on("click", function (e) {
 //        var file = $("#files")[0].files[0];
-        var folder = window.prompt("To which class would you like add this? Enter that class' name below, or enter nothing to add this to the \"Other\" folder: ");
+        var folder = window.prompt("To which class would you like add this? Enter that class' name below, or enter \"Misc\" to add this to the \"Miscellaneous\" folder: ");
         for (i = 0; i < $("#files")[0].files.length; i++) {
             uploadFile($("#files")[0].files[i], folder);
         }
@@ -53,52 +53,45 @@ $(document).ready(function(){
     }   
 
     function uploadFile(file, folder) {
-        var formData = new FormData();
-        var metadata;
-        if (folder == "") {
-            getFolderID("Other");
-            metadata = {
-            "name": file.name, 
-            "mimeType": file.type, 
-            "parents": [tempFolderID],
-            };
-        }
-        else {
-            getFolderID(folder);
-            metadata = {
-            "name": file.name, 
-            "mimeType": file.type, 
-            "parents": [tempFolderID],
-            };
-        }
+    getFolderID(folder)
+        .then(function(result) {
+            var formData = new FormData();
+            var metadata = {
+                "name": file.name, 
+                "mimeType": file.type, 
+                "parents": [result],
+                };
         
-    
-        // add assoc key values, this will be posts values
-        formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-        formData.append("file", file);
-    
-        $.ajax({
-            type: "POST",
-            beforeSend: function(request) {
-                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
-            },
-            url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
-            success: function (data) {
-                console.log("Succsesful file upload");
-                console.log(data);
-            },
-            error: function (error) {
-                console.log("Error in uploadFile");
-                console.log(error);
-            },
-            async: true,
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });
+            // add assoc key values, this will be posts values
+            formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+            formData.append("file", file);
+
+            $.ajax({
+                type: "POST",
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+                },
+                url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+                success: function (data) {
+                    console.log("Succsesful file upload");
+                    console.log(data);
+                },
+                error: function (error) {
+                    console.log("Error in uploadFile");
+                    console.log(error);
+                },
+                async: true,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 60000
+            }); // end of AJAX call
+        }) // end of .then
+        .catch(function() {
+        
+        }); // end of .catch
     };
     
     function createFolder(folderName) {
@@ -232,6 +225,7 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
+                createFolder("Miscellaneous");
                // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
