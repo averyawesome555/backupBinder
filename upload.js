@@ -185,14 +185,14 @@ $(document).ready(function(){
     }
     
     function getFolderID(folderName) {
-        $.ajax({
-        type: "GET",
-        beforeSend: function(request) {
-            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-            },
-            url: "https://www.googleapis.com/drive/v3/files",
-            success: function (data) {
-                return new Promise(function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+            type: "GET",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                },
+                url: "https://www.googleapis.com/drive/v3/files",
+                success: function (data) {
                     console.log(data);
                     for (i = 0; i < data.files.length; i++) {
                       if (data.files[i].name == folderName) {
@@ -200,18 +200,18 @@ $(document).ready(function(){
                         resolve(data.files[i].id); 
                       } // end of if
                     } // end of for-loop      
-                }); // end of return promise
-            },
-            error: function (error) {
-                console.log("Folder " + folderName + " not found!")
-                console.log(error);
-            },
-            async: true,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });
+                },
+                error: function (error) {
+                    console.log("Folder " + folderName + " not found!")
+                    console.log(error);
+                },
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 60000
+            }); // end of AJAX call
+        }); // end of promise
     }
     
     function isFirstTimeLogin() {
