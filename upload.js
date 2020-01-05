@@ -7,6 +7,7 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
+    var tempFolderID;
     
 
     $.ajax({
@@ -100,71 +101,49 @@ $(document).ready(function(){
         });
     };
     
-    function createFolder(folderName) {   
-        $.ajax({
-        type: "GET",
-        beforeSend: function(request) {
-            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
-            },
-            url: "https://www.googleapis.com/drive/v3/files",
-            success: function (data) {
-                console.log(data);
-                for (i = 0; i < data.files.length; i++) {
-                  if (data.files[i].name == folderName) {
-                    console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                    var formData = new FormData();
-                    var metadata = {
-                        "name": folderName,
-                        "mimeType": "application/vnd.google-apps.folder",
-                        "parents": [data.files[i].id],
-                        };
+    function createFolder(folderName) {
+        getFolderID(folderName)
+            .then(function(result) {
+                var formData = new FormData();
+                var metadata = {
+                    "name": folderName,
+                    "mimeType": "application/vnd.google-apps.folder",
+                    "parents": [result],
+                    };
 
-                    // add assoc key values, this will be posts values
-                    formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+                // add assoc key values, this will be posts values
+                formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
 
-                    $.ajax({
-                        type: "POST",
-                        beforeSend: function(request) {
-                            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                $.ajax({
+                    type: "POST",
+                    beforeSend: function(request) {
+                        request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
-                        },
-                        url: "https://www.googleapis.com/upload/drive/v3/files",
-                        success: function (data) {
-                            console.log("Succsesful folder creation")
-                            console.log(data);
-                            // Only implement the JSON file solution if the getFolderID method is too uneliable
-            //                if (folderName == "Backup Binder") {
-            //                    // add entry {username, getFolderID("Backup Binder")} to masterFoldersIndex.json
-            //                }
-                        },
-                        error: function (error) {
-                            console.log("Error in createFolder method");
-                            console.log(error);
-                        },
-                        async: true,
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        timeout: 60000
-                    });
-                  }
-                }
-            },
-            error: function (error) {
-                console.log("Folder " + folderName + " not found!")
-                console.log(error);
-            },
-            async: true,
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });        
-        
-
-
+                    },
+                    url: "https://www.googleapis.com/upload/drive/v3/files",
+                    success: function (data) {
+                        console.log("Succsesful folder creation")
+                        console.log(data);
+                        // Only implement the JSON file solution if the getFolderID method is too uneliable
+        //                if (folderName == "Backup Binder") {
+        //                    // add entry {username, getFolderID("Backup Binder")} to masterFoldersIndex.json
+        //                }
+                    },
+                    error: function (error) {
+                        console.log("Error in createFolder method");
+                        console.log(error);
+                    },
+                    async: true,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    timeout: 60000
+                });
+            }) // end of .then
+            .catch(function() {
+            
+        });
     }
     
     function createMasterFolder() {
@@ -210,17 +189,18 @@ $(document).ready(function(){
         type: "GET",
         beforeSend: function(request) {
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
             },
             url: "https://www.googleapis.com/drive/v3/files",
             success: function (data) {
-                console.log(data);
-                for (i = 0; i < data.files.length; i++) {
-                  if (data.files[i].name == folderName) {
-                    console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                    setTempFolderID(data.files[i].id); // basically the return statement. This is known as a callback function.
-                  }
-                }
+                return new Promise(function(resolve, reject) {
+                    console.log(data);
+                    for (i = 0; i < data.files.length; i++) {
+                      if (data.files[i].name == folderName) {
+                        console.log("Folder ID of " + folderName + ": " + data.files[i].id);
+                        resolve(data.files[i].id); 
+                      } // end of if
+                    } // end of for-loop      
+                }; // end of return promise
             },
             error: function (error) {
                 console.log("Folder " + folderName + " not found!")
@@ -265,15 +245,5 @@ $(document).ready(function(){
             timeout: 60000
         });
     }
-    
-    
-    function wait(s){ // this method works in milliseconds, so seconds (s) is multiplied by 1000
-       var start = new Date().getTime();
-       var end = start;
-       while(end < start + s*1000) {
-         end = new Date().getTime();
-       }
-}
-
         
 });
