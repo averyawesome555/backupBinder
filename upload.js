@@ -160,6 +160,8 @@ $(document).ready(function(){
             success: function (data) {
                 console.log("Succsesful master folder creation");
                 console.log(data);
+                console.log("About to trigger misc folder creation from createMasterFolder()...")
+                createFolder("Miscellaneous");
                 // Only implement the JSON file solution if the getFolderID method is too uneliable
 //                if (folderName == "Backup Binder") {
 //                    // add entry {username, getFolderID("Backup Binder")} to masterFoldersIndex.json
@@ -227,7 +229,6 @@ $(document).ready(function(){
                 }
                 console.log("first time login");
                 createMasterFolder();
-                createFolder("Miscellaneous");
                // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
             },
             error: function (error) {
