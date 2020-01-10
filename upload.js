@@ -135,8 +135,8 @@ $(document).ready(function(){
                     timeout: 60000
                 });
             }) // end of .then
-            .catch(function() {
-            
+            .catch(function(error) {
+                console.log(error);
         });
     }
     
@@ -158,7 +158,7 @@ $(document).ready(function(){
             },
             url: "https://www.googleapis.com/upload/drive/v3/files",
             success: function (data) {
-                console.log("Succsesful master folder creation")
+                console.log("Succsesful master folder creation");
                 console.log(data);
                 // Only implement the JSON file solution if the getFolderID method is too uneliable
 //                if (folderName == "Backup Binder") {
@@ -166,7 +166,7 @@ $(document).ready(function(){
 //                }
             },
             error: function (error) {
-                console.log("Error in createMasterFolder method")
+                console.log("Error in createMasterFolder method");
                 console.log(error);
             },
             async: true,
@@ -196,8 +196,9 @@ $(document).ready(function(){
                     } // end of for-loop      
                 },
                 error: function (error) {
-                    console.log("Folder " + folderName + " not found!")
+                    console.log("Folder " + folderName + " not found!");
                     console.log(error);
+                    reject(error);
                 },
                 async: true,
                 cache: false,
