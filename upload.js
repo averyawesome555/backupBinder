@@ -211,6 +211,16 @@ $(document).ready(function(){
             success: function (data) {
               console.log("Data from downloadFile():")
               console.log(data);
+              image2base64(data)
+                .then((response) => {
+                  var tempImg = new File(response, "eh.jpg");
+                  console.log("Image created");
+                }
+                )
+                .catch((error) => {
+                  console.log(error); //Exepection error....
+                }
+                );
             },
             error: function (error) {
                 console.log("Error in method isfirstTimeLogin");
