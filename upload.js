@@ -206,8 +206,8 @@ $(document).ready(function(){
         beforeSend: function(request) {
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
-            },
-            url: "https://www.googleapis.com/drive/v3/files/"+result,
+          }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
+            url: "https://www.googleapis.com/drive/v3/files/"+result+"?fields=webViewLink",
             success: function (data) {
               console.log("Data from viewFile():")
               console.log(data);
@@ -217,7 +217,6 @@ $(document).ready(function(){
                 console.log("Error in method isfirstTimeLogin");
                 console.log(error);
             },
-            webContentLink: true,
             cache: false,
             contentType: false,
             processData: false,
