@@ -52,18 +52,56 @@ $(document).ready(function(){
     }
 
     function uploadFile(file, folder) {
-    getFolderID(folder)
-        .then(function(result) {
-            var formData = new FormData();
-            var metadata = {
-                "name": file.name,
-                "mimeType": file.type,
+    getItemID(folder).then(function(result) {
+          var formData = new FormData();
+          var metadata = {
+              "name": file.name,
+              "mimeType": file.type,
+              "parents": [result],
+              };
+
+          // add assoc key values, this will be posts values
+          formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
+          formData.append("file", file);
+
+          $.ajax({
+              type: "POST",
+              beforeSend: function(request) {
+                  request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+              },
+              url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+              success: function (data) {
+                  console.log("Succsesful file upload");
+                  console.log(data);
+              },
+              error: function (error) {
+                  console.log("Error in uploadFile");
+                  console.log(error);
+              },
+              data: formData,
+              cache: false,
+              contentType: false,
+              processData: false,
+              timeout: 60000
+          }); // end of AJAX call
+      }) // end of .then
+      .catch(function() {
+
+      }); // end of .catch
+    }
+
+    function createFolder(folderName) {
+        getItemID("Backup Binder").then(function(result) {
+          var formData = new FormData();
+          var metadata = {
+                "name": folderName,
+                "mimeType": "application/vnd.google-apps.folder",
                 "parents": [result],
                 };
 
-            // add assoc key values, this will be posts values
+                // add assoc key values, this will be posts values
             formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-            formData.append("file", file);
 
             $.ajax({
                 type: "POST",
@@ -71,70 +109,24 @@ $(document).ready(function(){
                     request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
                 },
-                url: "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
+                url: "https://www.googleapis.com/upload/drive/v3/files",
                 success: function (data) {
-                    console.log("Succsesful file upload");
+                    console.log("Succsesful folder creation")
                     console.log(data);
                 },
                 error: function (error) {
-                    console.log("Error in uploadFile");
+                    console.log("Error in createFolder method");
                     console.log(error);
                 },
-                async: true,
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
                 timeout: 60000
-            }); // end of AJAX call
-        }) // end of .then
-        .catch(function() {
-
-        }); // end of .catch
-    };
-
-    function createFolder(folderName) {
-        getFolderID("Backup Binder")
-            .then(function(result) {
-                var formData = new FormData();
-                var metadata = {
-                    "name": folderName,
-                    "mimeType": "application/vnd.google-apps.folder",
-                    "parents": [result],
-                    };
-
-                // add assoc key values, this will be posts values
-                formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-
-                $.ajax({
-                    type: "POST",
-                    beforeSend: function(request) {
-                        request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-
-                    },
-                    url: "https://www.googleapis.com/upload/drive/v3/files",
-                    success: function (data) {
-                        console.log("Succsesful folder creation")
-                        console.log(data);
-                        // Only implement the JSON file solution if the getFolderID method is too uneliable
-        //                if (folderName == "Backup Binder") {
-        //                    // add entry {username, getFolderID("Backup Binder")} to masterFoldersIndex.json
-        //                }
-                    },
-                    error: function (error) {
-                        console.log("Error in createFolder method");
-                        console.log(error);
-                    },
-                    async: true,
-                    data: formData,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    timeout: 60000
-                });
-            }) // end of .then
-            .catch(function(error) {
-                console.log(error);
+            });
+          }) // end of .then
+          .catch(function(error) {
+            console.log(error);
         });
     }
 
@@ -164,7 +156,6 @@ $(document).ready(function(){
                 console.log("Error in createMasterFolder method");
                 console.log(error);
             },
-            async: true,
             data: formData,
             cache: false,
             contentType: false,
@@ -173,7 +164,7 @@ $(document).ready(function(){
         });
     }
 
-    function getFolderID(folderName) {
+    function getItemID(folderName) {
         return new Promise(function(resolve, reject) {
             $.ajax({
             type: "GET",
@@ -195,13 +186,41 @@ $(document).ready(function(){
                     console.log(error);
                     reject(error);
                 },
-                async: true,
                 cache: false,
                 contentType: false,
                 processData: false,
                 timeout: 60000
             }); // end of AJAX call
         }); // end of promise
+    }
+
+    function downloadFile() {
+      getItemID.then(function(result) {
+        $.ajax({
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+            },
+            url: "https://www.googleapis.com/drive/v3/files/"+result,
+            success: function (data) {
+              console.log("Data from downloadFile():")
+              console.log(data);
+            },
+            error: function (error) {
+                console.log("Error in method isfirstTimeLogin");
+                console.log(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     }
 
     function isFirstTimeLogin() {
@@ -228,7 +247,6 @@ $(document).ready(function(){
                 console.log("Error in method isfirstTimeLogin");
                 console.log(error);
             },
-            async: true,
             cache: false,
             contentType: false,
             processData: false,
