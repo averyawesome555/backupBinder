@@ -207,7 +207,7 @@ $(document).ready(function(){
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
             },
-            url: "https://www.googleapis.com/drive/v3/files/"+result,
+            url: "https://www.googleapis.com/drive/v3/files/"+result+"?alt=media",
             success: function (data) {
               console.log("Data from downloadFile():")
               console.log(data);
