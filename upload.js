@@ -1,5 +1,4 @@
 $(document).ready(function(){
-//eguoweogewgioawrgawhrgohaweiughwrui
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const redirect_uri = "https://backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
@@ -8,7 +7,7 @@ $(document).ready(function(){
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
     var tempFolderID;
-    
+
 
     $.ajax({
         type: "POST",
@@ -21,17 +20,17 @@ $(document).ready(function(){
         grant_type:"authorization_code"},
         dataType: "json",
         success: function(resultData) {
-           
+
            console.log("Result Data: ", resultData);
            localStorage.setItem("accessToken",resultData.access_token);
            localStorage.setItem("refreshToken",resultData.refreshToken);
            localStorage.setItem("expires_in",resultData.expires_in);
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
-           
+
            isFirstTimeLogin();
         }
   });
-    
+
     $("#uploadFile").on("click", function (e) {
 //        var file = $("#files")[0].files[0];
         var folder = window.prompt("To which class would you like add this? Enter that class' name below, or enter \"Misc\" to add this to the \"Miscellaneous\" folder: ");
@@ -40,29 +39,29 @@ $(document).ready(function(){
             uploadFile($("#files")[0].files[i], folder);
         }
     });
-        
+
     $("#createFolder").on("click", function (e) {
         var newFolderName = window.prompt("Enter the name of the new class you want to add:");
         createFolder(newFolderName);
     });
 
-                          
-                          
-                          
+
+
+
     function stripQueryStringAndHashFromPath(url) {
         return url.split("?")[0].split("#")[0];
-    }   
+    }
 
     function uploadFile(file, folder) {
     getFolderID(folder)
         .then(function(result) {
             var formData = new FormData();
             var metadata = {
-                "name": file.name, 
-                "mimeType": file.type, 
+                "name": file.name,
+                "mimeType": file.type,
                 "parents": [result],
                 };
-        
+
             // add assoc key values, this will be posts values
             formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
             formData.append("file", file);
@@ -91,10 +90,10 @@ $(document).ready(function(){
             }); // end of AJAX call
         }) // end of .then
         .catch(function() {
-        
+
         }); // end of .catch
     };
-    
+
     function createFolder(folderName) {
         getFolderID("Backup Binder")
             .then(function(result) {
@@ -139,22 +138,22 @@ $(document).ready(function(){
                 console.log(error);
         });
     }
-    
+
     function createMasterFolder() {
         var formData = new FormData();
         var metadata = {
-            "name": "Backup Binder", 
+            "name": "Backup Binder",
             "mimeType": "application/vnd.google-apps.folder",
             };
-    
+
         // add assoc key values, this will be posts values
         formData.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-    
+
         $.ajax({
             type: "POST",
             beforeSend: function(request) {
                 request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
+
             },
             url: "https://www.googleapis.com/upload/drive/v3/files",
             success: function (data) {
@@ -174,7 +173,7 @@ $(document).ready(function(){
             timeout: 60000
         });
     }
-    
+
     function getFolderID(folderName) {
         return new Promise(function(resolve, reject) {
             $.ajax({
@@ -188,9 +187,9 @@ $(document).ready(function(){
                     for (i = 0; i < data.files.length; i++) {
                       if (data.files[i].name == folderName) {
                         console.log("Folder ID of " + folderName + ": " + data.files[i].id);
-                        resolve(data.files[i].id); 
+                        resolve(data.files[i].id);
                       } // end of if
-                    } // end of for-loop      
+                    } // end of for-loop
                 },
                 error: function (error) {
                     console.log("Folder " + folderName + " not found!");
@@ -205,13 +204,13 @@ $(document).ready(function(){
             }); // end of AJAX call
         }); // end of promise
     }
-    
+
     function isFirstTimeLogin() {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-                
+
             },
             url: "https://www.googleapis.com/drive/v3/files",
             success: function (data) {
@@ -237,5 +236,5 @@ $(document).ready(function(){
             timeout: 60000
         });
     }
-        
+
 });
