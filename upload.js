@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  //eh
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
     const redirect_uri = "https://backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
