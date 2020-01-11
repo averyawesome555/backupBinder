@@ -44,6 +44,11 @@ $(document).ready(function(){
         createFolder(newFolderName);
     });
 
+    $("#downloadFile").on("click", function (e) {
+        var fileName = window.prompt("Enter the name of the file you want to download:");
+        downloadFile(fileName);
+    });
+
 
 
 
