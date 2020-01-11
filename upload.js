@@ -207,7 +207,7 @@ $(document).ready(function(){
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
           }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-            url: "https://www.googleapis.com/drive/v3/files/"+result+"?fields=webViewLink",
+            url: "https://www.googleapis.com/drive/v3/files/"+result+"?fields=webContentLink",
             success: function (data) {
               console.log("Data from viewFile():")
               console.log(data);
