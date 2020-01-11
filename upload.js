@@ -210,7 +210,7 @@ $(document).ready(function(){
             url: "https://www.googleapis.com/drive/v3/files/"+result,
             success: function (data) {
               console.log("Data from viewFile():")
-              console.log(data.name);
+              console.log(data);
 
             },
             error: function (error) {
