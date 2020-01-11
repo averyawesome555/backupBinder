@@ -46,7 +46,7 @@ $(document).ready(function(){
 
     $("#downloadFile").on("click", function (e) {
         var fileName = window.prompt("Enter the name of the file you want to download:");
-        downloadFile(fileName);
+        viewFile(fileName);
     });
 
 
@@ -199,7 +199,7 @@ $(document).ready(function(){
         }); // end of promise
     }
 
-    function downloadFile(fileName) {
+    function viewFile(fileName) {
       getItemID(fileName).then(function(result) {
         $.ajax({
         type: "GET",
@@ -207,10 +207,10 @@ $(document).ready(function(){
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
             },
-            url: "https://www.googleapis.com/drive/v3/files/"+result+"?alt=media",
+            url: "https://www.googleapis.com/drive/v3/files/"+result,
             success: function (data) {
-              console.log("Data from downloadFile():")
-              console.log(data);
+              console.log("Data from viewFile():")
+              console.log(data.webViewLink);
 
             },
             error: function (error) {
