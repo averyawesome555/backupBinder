@@ -199,8 +199,8 @@ $(document).ready(function(){
         }); // end of promise
     }
 
-    function downloadFile() {
-      getItemID.then(function(result) {
+    function downloadFile(fileName) {
+      getItemID(fileName).then(function(result) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
