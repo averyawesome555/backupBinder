@@ -229,6 +229,13 @@ $(document).ready(function(){
       });
     }
 
+
+    // plan for Ryan's method"
+    // 1. Create dictoriuionary <class name, [children]>
+    // 2. Get children for all class folders
+    // 3. add to dictionary
+    // 4. QED
+
     function isFirstTimeLogin() {
         $.ajax({
         type: "GET",
