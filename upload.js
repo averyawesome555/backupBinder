@@ -209,13 +209,14 @@ $(document).ready(function(){
     function listAll() {
       return new Promise(function(resolve, reject) {
         getFilesFromFolder("Backup Binder").then(function(classes) {
-          var all = {};
+          var all = {}; // creates dictionary <class name, jsonContent>
           for (i = 0; i < classes.files.length; i++) {
             getFilesFromFolder(classes.files[i]).then(function(classWork) {
               all[classes.files[i].name] = classWork;
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log("All: " + all);
+          resolve(all);
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
