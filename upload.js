@@ -27,7 +27,7 @@ $(document).ready(function(){
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
 
            isFirstTimeLogin();
-           getChildren("Backup Binder");
+           listAll();
         }
   });
 
