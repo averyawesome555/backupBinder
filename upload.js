@@ -221,7 +221,7 @@ $(document).ready(function(){
     }
 
     function getFileInfo(fileID) {
-      return new Promise(function(resolve, reject) {
+      // return new Promise(function(resolve, reject) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
@@ -232,20 +232,20 @@ $(document).ready(function(){
             success: function (data) {
               console.log("Data from getFileInfo():")
               console.log(data);
-              resolve(data);
+              // resolve(data);
 
             },
             error: function (error) {
                 console.log("Error in method getFileInfo():");
                 console.log(error);
-                reject(error);
+                // reject(error);
             },
             cache: false,
             contentType: false,
             processData: false,
             timeout: 60000
         });
-      }); // end of promise
+      // }); // end of promise
     }
 
 
