@@ -52,7 +52,7 @@ $(document).ready(function(){
 
 
 
-
+    // maybe comment out?
     function stripQueryStringAndHashFromPath(url) {
         return url.split("?")[0].split("#")[0];
     }
@@ -250,42 +250,6 @@ $(document).ready(function(){
         }); // end of then
       }); // end of promise
     }
-
-
-    // function getChildren(folderName) {
-    //   return new Promise(function(resolve, reject) {
-    //     getItemID(folderName).then(function(result) {
-    //       $.ajax({
-    //       type: "GET",
-    //       beforeSend: function(request) {
-    //           request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-    //
-    //         }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-    //           url: "https://www.googleapis.com/drive/v2/files/" + result + "/children",
-    //           success: function (data) {
-    //             console.log("Data from listAll():")
-    //             console.log(data);
-    //             var classIDs = [];
-    //             for (i = 0; i < data.items.length; i++) {
-    //               classIDs.push(data.items[i].id);
-    //             }
-    //             resolve(classIDs);
-    //
-    //           },
-    //           error: function (error) {
-    //               console.log("Error in method listAll");
-    //               console.log(error);
-    //               reject(error);
-    //           },
-    //           cache: false,
-    //           contentType: false,
-    //           processData: false,
-    //           timeout: 60000
-    //       });
-    //
-    //     })
-    //   });
-    // }
 
     function isFirstTimeLogin() {
         $.ajax({
