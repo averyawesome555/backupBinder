@@ -47,7 +47,7 @@ $(document).ready(function(){
 
     $("#downloadFile").on("click", function (e) {
         var fileName = window.prompt("Enter the name of the file you want to download:");
-        getFileInfo("1t-G1jFzof31on-OGuPX0PhN4_rUIPKpm");
+        getFilesFromFolder("1t-G1jFzof31on-OGuPX0PhN4_rUIPKpm");
     });
 
 
@@ -220,7 +220,7 @@ $(document).ready(function(){
       .catch(function(error) {console.log(error)});
     }
 
-    function getFileInfo(fileID) {
+    function getFilesFromFolder(folderID) {
       // return new Promise(function(resolve, reject) {
         $.ajax({
         type: "GET",
@@ -228,9 +228,9 @@ $(document).ready(function(){
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
           }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-            url: "https://www.googleapis.com/drive/v3/files/"+fileID+"?fields=*",
+            url: "https://www.googleapis.com/drive/v3/files?q='"+ folderID + "'+in+parents",
             success: function (data) {
-              console.log("Data from getFileInfo():")
+              console.log("Data from getFilesFromFolder():")
               console.log(data);
               // resolve(data);
 
