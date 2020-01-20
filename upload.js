@@ -201,9 +201,9 @@ $(document).ready(function(){
     }
 
     // plan for Ryan's method"
-    // 1. Create dictoriuionary <class name, [children]>
-    // 2. Get children for all class folders
-    // 3. add to dictionary
+    // 1. Create dictoriuionary <class name, jsonContent>
+    // 2. Get children IDs for all class folders
+    // 3. list all files in class fodlers and add to dictionary - https://stackoverflow.com/questions/24720075/how-to-get-list-of-files-by-folder-on-google-drive-api
     // 4. QED
 
     function listAll() {
