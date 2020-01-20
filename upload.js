@@ -27,6 +27,7 @@ $(document).ready(function(){
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
 
            isFirstTimeLogin();
+           listAll();
         }
   });
 
@@ -235,6 +236,33 @@ $(document).ready(function(){
     // 2. Get children for all class folders
     // 3. add to dictionary
     // 4. QED
+
+    function listAll(rootFolderID) {
+      getItemID(rootFolderID).then(function(result) {
+        $.ajax({
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+          }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
+            url: "https://www.googleapis.com/drive/v2/files/" + result + "/children",
+            success: function (data) {
+              console.log("Data from listAll():")
+              console.log(data);
+
+            },
+            error: function (error) {
+                console.log("Error in method listAll");
+                console.log(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+
+      })
+    }
 
     function isFirstTimeLogin() {
         $.ajax({
