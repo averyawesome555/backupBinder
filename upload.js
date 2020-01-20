@@ -237,8 +237,8 @@ $(document).ready(function(){
     // 3. add to dictionary
     // 4. QED
 
-    function listAll(rootFolderID) {
-      getItemID(rootFolderID).then(function(result) {
+    function listAll(rootFolderName) {
+      getItemID(rootFolderName).then(function(result) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
