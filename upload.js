@@ -27,7 +27,7 @@ $(document).ready(function(){
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
 
            isFirstTimeLogin();
-           listAll("Backup Binder");
+           getChildren("Backup Binder");
         }
   });
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
 
     $("#downloadFile").on("click", function (e) {
         var fileName = window.prompt("Enter the name of the file you want to download:");
-        viewFile(fileName);
+        getFileInfo("1t-G1jFzof31on-OGuPX0PhN4_rUIPKpm");
     });
 
 
@@ -200,68 +200,88 @@ $(document).ready(function(){
         }); // end of promise
     }
 
-    function viewFile(fileName) {
-      getItemID(fileName).then(function(result) {
-        $.ajax({
-        type: "GET",
-        beforeSend: function(request) {
-            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
-
-          }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-            url: "https://www.googleapis.com/drive/v3/files/"+result+"?fields=webContentLink",
-            success: function (data) {
-              console.log("Data from viewFile():")
-              console.log(data);
-
-            },
-            error: function (error) {
-                console.log("Error in method isfirstTimeLogin");
-                console.log(error);
-            },
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
-        });
-
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    }
-
-
     // plan for Ryan's method"
     // 1. Create dictoriuionary <class name, [children]>
     // 2. Get children for all class folders
     // 3. add to dictionary
     // 4. QED
 
-    function listAll(rootFolderName) {
-      getItemID(rootFolderName).then(function(result) {
+    function listAll() {
+      getChildren("Backup Binder").then(function(result) {
+        var all = {};
+        var className = "";
+        var classID = "";
+        for (i = 0; i < result.length; i++) {
+          getFileInfo(result[i]).then(function(result) {
+
+          }).catch(function(error) {console.log(error)});
+        } // end of for-loop
+      })
+      .catch(function(error) {console.log(error)});
+    }
+
+    function getFileInfo(fileID) {
+      return new Promise(function(resolve, reject) {
         $.ajax({
         type: "GET",
         beforeSend: function(request) {
             request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
           }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-            url: "https://www.googleapis.com/drive/v2/files/" + result + "/children",
+            url: "https://www.googleapis.com/drive/v3/files/"+fileID+"?fields=name,mimeType,webContentLink",
             success: function (data) {
-              console.log("Data from listAll():")
+              console.log("Data from getFileInfo():")
               console.log(data);
+              resolve(data);
 
             },
             error: function (error) {
-                console.log("Error in method listAll");
+                console.log("Error in method getFileInfo():");
                 console.log(error);
+                reject(error);
             },
             cache: false,
             contentType: false,
             processData: false,
             timeout: 60000
         });
+      }); // end of promise
+    }
 
-      })
+
+    function getChildren(folderName) {
+      return new Promise(function(resolve, reject) {
+        getItemID(folderName).then(function(result) {
+          $.ajax({
+          type: "GET",
+          beforeSend: function(request) {
+              request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+            }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
+              url: "https://www.googleapis.com/drive/v2/files/" + result + "/children",
+              success: function (data) {
+                console.log("Data from listAll():")
+                console.log(data);
+                var classIDs = [];
+                for (i = 0; i < data.items.length; i++) {
+                  classIDs.push(data.items[i].id);
+                }
+                resolve(classIDs);
+
+              },
+              error: function (error) {
+                  console.log("Error in method listAll");
+                  console.log(error);
+                  reject(error);
+              },
+              cache: false,
+              contentType: false,
+              processData: false,
+              timeout: 60000
+          });
+
+        })
+      });
     }
 
     function isFirstTimeLogin() {
