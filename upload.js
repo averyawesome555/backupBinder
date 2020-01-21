@@ -212,7 +212,7 @@ $(document).ready(function(){
           var all = {}; // creates dictionary <class name, jsonContent>
           for (i = 0; i < classes.files.length; i++) {
             getFilesFromFolder(classes.files[i].name).then(function(classWork) {
-              all[classes.files[i].name] = classWork;
+              all[i] = classWork;
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log("All: " + all);
