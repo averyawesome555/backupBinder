@@ -211,7 +211,7 @@ $(document).ready(function(){
         getFilesFromFolder("Backup Binder").then(function(classes) {
           var all = {}; // creates dictionary <class name, jsonContent>
           for (i = 0; i < classes.files.length; i++) {
-            getFilesFromFolder(classes.files[i]).then(function(classWork) {
+            getFilesFromFolder(classes.files[i].name).then(function(classWork) {
               all[classes.files[i].name] = classWork;
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
