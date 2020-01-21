@@ -222,6 +222,22 @@ $(document).ready(function(){
       }); // end of promise
     }
 
+    function listAll2() {
+      return new Promise(function(resolve, reject) {
+        getFilesFromFolder("Backup Binder").then(function(classes) {
+          for (i = 0; i < classes[1].files.length; i++) {
+            getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
+              $str = JSON.stringify(classwork);
+              $file = fopen("master.json","w");
+              fwrite($file, $str);
+              fclose($file);
+            }).catch(function(error) {console.log(error)});
+          } // end of for-loop
+          resolve("lyle");
+        }).catch(function(error) {console.log(error)});
+      }); // end of promise
+    }
+
 
 
     function getFilesFromFolder(folderName) {
