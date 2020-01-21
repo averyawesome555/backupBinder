@@ -208,12 +208,12 @@ $(document).ready(function(){
 
     function listAll() {
       return new Promise(function(resolve, reject) {
+        var all = {}; // creates dictionary <class name, jsonContent>
         getFilesFromFolder("Backup Binder").then(function(classes) {
-          var all = {}; // creates dictionary <class name, jsonContent>
           for (i = 0; i < classes.files.length; i++) {
-            getFilesFromFolder(classes.files[i].name).then(function(classWork) {
-              all[classes.files[i].name] = classWork;
-              console.log(classes.files[i].name + " in getFilesFromFolder thenable: " + all[classes.files[i].name]);
+            getFilesFromFolder(classes.files[i].name).then(function(classwork) {
+              all[classwork[0]] = classwork[1];
+              console.log(classwork[0] + " in getFilesFromFolder thenable: " + all[classwork[0]]);
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log("All: " + all);
@@ -222,20 +222,23 @@ $(document).ready(function(){
       }); // end of promise
     }
 
+
+
     function getFilesFromFolder(folderName) {
       return new Promise(function(resolve, reject) {
-        getItemID(folderName).then(function(result) {
+        getItemID(folderName).then(function(folderID) {
           $.ajax({
           type: "GET",
           beforeSend: function(request) {
               request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
             }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
-              url: "https://www.googleapis.com/drive/v3/files?q='"+ result + "'+in+parents",
+              url: "https://www.googleapis.com/drive/v3/files?q='"+ folderID + "'+in+parents",
               success: function (data) {
                 console.log("Data from getFilesFromFolder():")
                 console.log(data);
-                resolve(data);
+                var arr = [folderID, data];
+                resolve(arr);
 
               },
               error: function (error) {
