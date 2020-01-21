@@ -227,13 +227,11 @@ $(document).ready(function(){
         getFilesFromFolder("Backup Binder").then(function(classes) {
           for (i = 0; i < classes[1].files.length; i++) {
             getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
-              $str = JSON.stringify(classwork);
-              $file = fopen("master.json","w");
-              fwrite($file, $str);
-              fclose($file);
+              $("#binderContent").text($("#binderContent").text() + "," + JSON.stringify(classwork)); // sets content of p binderContent = to itself plsu new class
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
-          resolve("lyle");
+          console.log($("#binderContent").text());
+          resolve($("#binderContent").text());
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
