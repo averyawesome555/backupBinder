@@ -6,6 +6,7 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
+    $("#binderContent").hide();
 
 
     $.ajax({
