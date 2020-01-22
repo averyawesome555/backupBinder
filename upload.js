@@ -227,7 +227,10 @@ $(document).ready(function(){
         getFilesFromFolder("Backup Binder").then(function(classes) {
           for (i = 0; i < classes[1].files.length; i++) {
             getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
-              $("#binderContent").text($("#binderContent").text() + "-------------------" + JSON.stringify(classwork)); // sets content of p binderContent = to itself plsu new class
+              var classID = classwork[0];
+              var classContent = classwork[1].files;
+              var classwork2 = [classID, classContent];
+              $("#binderContent").text($("#binderContent").text() + "-------------------" + JSON.stringify(classwork2)); // sets content of p binderContent = to itself plsu new class
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log($("#binderContent").text());
