@@ -234,12 +234,12 @@ $(document).ready(function(){
               var classwork2 = [classID, classContent];
               if ($("#binderContent").text() == "") { // if binderContent is empty
                 var arr = [classwork2];
-                $("#binderContent").text(arr);
+                $("#binderContent").text(JSON.stringify(arr));
               }
               else { // if it's not empty
                 var binderContentArr = $.parseJSON($("#binderContent").text());
                 binderContentArr.push(classwork2);
-                $("#binderContent").text(binderContentArr);
+                $("#binderContent").text(JSON.stringify(binderContentArr));
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
