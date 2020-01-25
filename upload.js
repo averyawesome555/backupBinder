@@ -244,7 +244,7 @@ $(document).ready(function(){
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log($("#binderContent").text());
-          resolve($.parseJSON($("#binderContent").text()));
+          resolve($("#binderContent").text());
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
