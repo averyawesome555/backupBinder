@@ -31,6 +31,7 @@ $(document).ready(function(){
            listAll2();
         }
   });
+  // hey guys, this is austin
 
     $("#uploadFile").on("click", function (e) {
 //        var file = $("#files")[0].files[0];
@@ -231,11 +232,19 @@ $(document).ready(function(){
               var classID = classwork[0];
               var classContent = classwork[1].files;
               var classwork2 = [classID, classContent];
-              $("#binderContent").text($("#binderContent").text() + "-------------------" + JSON.stringify(classwork2)); // sets content of p binderContent = to itself plsu new class
+              if ($("#binderContent").text() == "") { // if binderContent is empty
+                var arr = [classwork2];
+                $("#binderContent").text(arr);
+              }
+              else { // if it's not empty
+                var binderContentArr = $.parseJSON($("#binderContent").text());
+                binderContentArr.push(classwork2);
+                $("#binderContent").text(binderContentArr);
+              }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
           console.log($("#binderContent").text());
-          resolve($("#binderContent").text());
+          resolve($.parseJSON($("#binderContent").text()));
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
