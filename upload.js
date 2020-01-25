@@ -214,4 +214,103 @@ $(document).ready(function(){
         getFilesFromFolder("Backup Binder").then(function(classes) {
           for (i = 0; i < classes[1].files.length; i++) {
             getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
-              all[classwork
+              all[classwork[0]] = classwork[1];
+              console.log(classwork[0] + " in getFilesFromFolder thenable: " + all[classwork[0]]);
+            }).catch(function(error) {console.log(error)});
+          } // end of for-loop
+          console.log("All: " + all);
+          resolve(all);
+        }).catch(function(error) {console.log(error)});
+      }); // end of promise
+    }
+
+    function listAll2() {
+      return new Promise(function(resolve, reject) {
+        getFilesFromFolder("Backup Binder").then(function(classes) {
+          for (i = 0; i < classes[1].files.length; i++) {
+            getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
+              var classID = classwork[0];
+              var classContent = classwork[1].files;
+              var classwork2 = [classID, classContent];
+              if ($("#binderContent").text() == "") { // if binderContent is empty
+                var arr = [classwork2];
+                $("#binderContent").text(JSON.stringify(arr));
+              }
+              else { // if it's not empty
+                var binderContentArr = $.parseJSON($("#binderContent").text());
+                binderContentArr.push(classwork2);
+                $("#binderContent").text(JSON.stringify(binderContentArr));
+              }
+            }).catch(function(error) {console.log(error)});
+          } // end of for-loop
+          console.log($("#binderContent").text());
+          resolve($("#binderContent").text());
+        }).catch(function(error) {console.log(error)});
+      }); // end of promise
+    }
+
+
+
+    function getFilesFromFolder(folderName) {
+      return new Promise(function(resolve, reject) {
+        getItemID(folderName).then(function(folderID) {
+          $.ajax({
+          type: "GET",
+          beforeSend: function(request) {
+              request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+            }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
+              url: "https://www.googleapis.com/drive/v3/files?q='"+ folderID + "'+in+parents",
+              success: function (data) {
+                console.log("Data from getFilesFromFolder():")
+                console.log(data);
+                var arr = [folderID, data];
+                resolve(arr);
+
+              },
+              error: function (error) {
+                  console.log("Error in method getFileInfo():");
+                  console.log(error);
+                  reject(error);
+              },
+              cache: false,
+              contentType: false,
+              processData: false,
+              timeout: 60000
+          });
+        }); // end of then
+      }); // end of promise
+    }
+
+    function isFirstTimeLogin() {
+        $.ajax({
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+            },
+            url: "https://www.googleapis.com/drive/v3/files",
+            success: function (data) {
+                console.log(data);
+                for (i = 0; i < data.files.length; i++) {
+                  if (data.files[i].name == "Backup Binder") {
+                      console.log("NOT first time login");
+                      return;
+                  }
+                }
+                console.log("first time login");
+                createMasterFolder();
+               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+            },
+            error: function (error) {
+                console.log("Error in method isfirstTimeLogin");
+                console.log(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
+
+});
