@@ -231,14 +231,13 @@ $(document).ready(function(){
             getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
               var classID = classwork[0];
               var classContent = classwork[1].files;
-              var classwork2 = [classID, classContent];
               if ($("#binderContent").text() == "") { // if binderContent is empty
-                var arr = [classwork2];
+                var dict = {classID: classContent};
                 $("#binderContent").text(JSON.stringify(arr));
               }
               else { // if it's not empty
-                var binderContentArr = $.parseJSON($("#binderContent").text());
-                binderContentArr.push(classwork2);
+                var binderContentDict = $.parseJSON($("#binderContent").text());
+                binderContentDict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(binderContentArr));
               }
             }).catch(function(error) {console.log(error)});
