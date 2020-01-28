@@ -243,8 +243,8 @@ $(document).ready(function(){
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
-          console.log(JSON.parse($("#binderContent").text()));
-          resolve(JSON.parse($("#binderContent").text()));
+          console.log($.parseJSON($("#binderContent").text()));
+          resolve($.parseJSON($("#binderContent").text()));
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
