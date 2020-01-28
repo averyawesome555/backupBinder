@@ -28,7 +28,7 @@ $(document).ready(function(){
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
 
            isFirstTimeLogin();
-           listAll2();
+           listAll();
         }
   });
   // hey guys, this is austin
@@ -170,8 +170,70 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
-    }
+        
+    function isFirstTimeLogin() {
+        $.ajax({
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
+            },
+            url: "https://www.googleapis.com/drive/v3/files",
+            success: function (data) {
+                console.log(data);
+                for (i = 0; i < data.files.length; i++) {
+                  if (data.files[i].name == "Backup Binder") {
+                      console.log("NOT first time login");
+                      return;
+                  }
+                }
+                console.log("first time login");
+                createMasterFolder();
+               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+            },
+            error: function (error) {
+                console.log("Error in method isfirstTimeLogin");
+                console.log(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
+    }
+    
+    function getFileInfoByID() {
+        $.ajax({
+        type: "GET",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+
+            },
+            url: "https://www.googleapis.com/drive/v3/files",
+            success: function (data) {
+                console.log(data);
+                for (i = 0; i < data.files.length; i++) {
+                  if (data.files[i].name == "Backup Binder") {
+                      console.log("NOT first time login");
+                      return;
+                  }
+                }
+                console.log("first time login");
+                createMasterFolder();
+               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
+            },
+            error: function (error) {
+                console.log("Error in method isfirstTimeLogin");
+                console.log(error);
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+            timeout: 60000
+        });
+    }
+    
     function getItemID(folderName) {
         return new Promise(function(resolve, reject) {
             $.ajax({
@@ -209,22 +271,6 @@ $(document).ready(function(){
     // 4. QED
 
     function listAll() {
-      return new Promise(function(resolve, reject) {
-        var all = {}; // creates dictionary <class name, jsonContent>
-        getFilesFromFolder("Backup Binder").then(function(classes) {
-          for (i = 0; i < classes[1].files.length; i++) {
-            getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
-              all[classwork[0]] = classwork[1];
-              console.log(classwork[0] + " in getFilesFromFolder thenable: " + all[classwork[0]]);
-            }).catch(function(error) {console.log(error)});
-          } // end of for-loop
-          console.log("All: " + all);
-          resolve(all);
-        }).catch(function(error) {console.log(error)});
-      }); // end of promise
-    }
-
-    function listAll2() {
       return new Promise(function(resolve, reject) {
         getFilesFromFolder("Backup Binder").then(function(classes) {
           for (i = 0; i < classes[1].files.length; i++) {
