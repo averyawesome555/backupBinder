@@ -240,7 +240,7 @@ $(document).ready(function(){
                 var binderContentDict = $.parseJSON($("#binderContent").text());
                 binderContentDict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(binderContentDict));
-                var result = $.parseJSON($("#binderContent").text());
+                var result = $("#binderContent").text();
                 console.log("Result from listAll2: " + result);
                 resolve(result);
               }
