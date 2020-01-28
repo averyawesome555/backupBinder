@@ -243,7 +243,7 @@ $(document).ready(function(){
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
-          var result = document.getElementById("binderContent").textContent
+          var result = $("#binderContent").html();
           console.log("Result from listAll2: " + result);
           resolve(result);
         }).catch(function(error) {console.log(error)});
