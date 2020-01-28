@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Backup Binder</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="upload.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="upload.js"></script>
-</head>
-<body>
-   <div>
-     <input id="files" type="file" name="files[]" multiple/>
-     <button id="uploadFile">Upload Work</button>
-   </div>
-   <button id="createFolder">Add Class</button>
-   <button id="downloadFile">Download File</button>
-   <p id="binderContent"></p>
-</body>
-</html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+    
+    <link rel="stylesheet" href="upload.css"></link>
+
+    <meta data="viewport-scale=1"></meta>
+
+  </head>
+  <body>
+
+    <div id="binder">
+      <div v-for="folder in folders">
+
+        <folder :meta=folder></folder>
+
+      </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="index.js"></script>
+  </body>

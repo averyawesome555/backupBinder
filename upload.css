@@ -25,3 +25,46 @@
     display: inline-block;
     color: #000000;
   }
+
+  .folder {
+  height: 100px;
+  padding: 10px !important;
+}
+
+.folder > div > * {
+    line-height: 10rem !important;
+}
+
+.folder > div.data {
+  text-align: center;
+}
+
+.folder: {
+  color: white !important;
+}
+
+
+
+.col-primary {
+  background-color: #007bff
+}
+
+.col-secondary {
+  background-color: #6c757d
+}
+
+.col-success {
+  background-color: #28a745
+}
+
+.col-info {
+  background-color: #17a2b8
+}
+
+.col-warning {
+  background-color: #ffc107
+}
+
+.col-danger {
+  background-color: #dc3545
+}
