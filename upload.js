@@ -232,7 +232,8 @@ $(document).ready(function(){
               var classID = classwork[0];
               var classContent = classwork[1].files;
               if ($("#binderContent").text() == "") { // if binderContent is empty
-                var dict = {classID: classContent};
+                var dict = {};
+                dict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(dict));
               }
               else { // if it's not empty
