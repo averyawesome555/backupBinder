@@ -233,12 +233,12 @@ $(document).ready(function(){
               var classContent = classwork[1].files;
               if ($("#binderContent").text() == "") { // if binderContent is empty
                 var dict = {classID: classContent};
-                $("#binderContent").text(JSON.stringify(arr));
+                $("#binderContent").text(JSON.stringify(dict));
               }
               else { // if it's not empty
                 var binderContentDict = $.parseJSON($("#binderContent").text());
                 binderContentDict[classID] = classContent;
-                $("#binderContent").text(JSON.stringify(binderContentArr));
+                $("#binderContent").text(JSON.stringify(binderContentDict));
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
