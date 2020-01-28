@@ -241,7 +241,7 @@ $(document).ready(function(){
                 binderContentDict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(binderContentDict));
                 var result = $("#binderContent").text();
-                console.log("Result from listAll2: " + result);
+                console.log("Result from listAll2: " + result.toString());
                 resolve(result);
               }
             }).catch(function(error) {console.log(error)});
