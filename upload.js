@@ -240,12 +240,12 @@ $(document).ready(function(){
                 var binderContentDict = $.parseJSON($("#binderContent").text());
                 binderContentDict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(binderContentDict));
+                var result = $.parseJSON($("#binderContent").text());
+                console.log("Result from listAll2: " + result);
+                resolve(result);
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
-          var result = $("#binderContent").html();
-          console.log("Result from listAll2: " + result);
-          resolve(result);
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
