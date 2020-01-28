@@ -203,35 +203,29 @@ $(document).ready(function(){
     }
     }
     
-    function getFileInfoByID() {
+    function getFileInfoByID(fileID) {
+      return new Promise(function(resolve, reject) {
         $.ajax({
-        type: "GET",
-        beforeSend: function(request) {
-            request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+          type: "GET",
+          beforeSend: function(request) {
+              request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
 
-            },
-            url: "https://www.googleapis.com/drive/v3/files",
-            success: function (data) {
-                console.log(data);
-                for (i = 0; i < data.files.length; i++) {
-                  if (data.files[i].name == "Backup Binder") {
-                      console.log("NOT first time login");
-                      return;
-                  }
-                }
-                console.log("first time login");
-                createMasterFolder();
-               // createFolder("Other"); // this is the folder for stuff that belongs to no class in particular e.g. field trip form
-            },
-            error: function (error) {
-                console.log("Error in method isfirstTimeLogin");
-                console.log(error);
-            },
-            cache: false,
-            contentType: false,
-            processData: false,
-            timeout: 60000
+              },
+              url: "https://www.googleapis.com/drive/v3/files/"+ fileID + "?fields=*",
+              success: function (data) {
+                  console.log(data);
+                  resolve(data)
+              },
+              error: function (error) {
+                  console.log("Error in method getFileInfobyID");
+                  reject(error);
+              },
+              cache: false,
+              contentType: false,
+              processData: false,
+              timeout: 60000
         });
+      }); // end of promise
     }
     
     function getItemID(folderName) {
