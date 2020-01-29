@@ -74,4 +74,6 @@ footer {
 	background-color: blue;
 	height: 10px;
 	width: 100vw;
+	bottom: 0;
+	position: fixed;
 }
