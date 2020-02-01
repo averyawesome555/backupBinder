@@ -39,7 +39,7 @@
   text-align: center;
 }
 
-.folder: {
+.folder {
   color: white !important;
 }
 
@@ -69,11 +69,52 @@
   background-color: #dc3545
 }
 
+.pastel-blue {
+	background-color: rgb(130, 171, 231)
+}
 
-footer {
-	background-color: blue;
-	height: 10px;
-	width: 100vw;
-	bottom: 0;
-	position: fixed;
+.text-muted-blue {
+	color: rgb(158, 190, 236)
+}
+
+.dark-gold {
+	background-color: rgb(247, 223, 152)
+}
+
+.muted-text-gray {
+	color: rgb(213, 216, 219)
+}
+
+.darker-gold {
+	color: rgb(249, 232, 178)
+}
+
+.pastel-pink {
+	background-color: rgb(235, 197, 215)
+}
+
+.light-gold {
+	background-color: rgb(248, 236, 196)
+}
+
+#navbar .row div {
+	text-align: center;
+	color: rgb(139, 153, 165)
+}
+
+#navbar .row div.active {
+	color: rgb(103, 171, 233);
+}
+
+#navbar .row div i {
+	font-size: 56px;
+}
+
+#navbar .row div p {
+	font-size: 24px;
+}
+
+#navbar {
+	padding-top: 30px;
+	border-top: 1px solid rgb(125, 125, 125)
 }

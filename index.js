@@ -24,6 +24,11 @@ Vue.component('folder', {
   `
 })
 
+Vue.component('icon', {
+	props: ['name'],
+	template: "<i :class='name | icon'></i>"
+})
+
 Vue.filter('getColor', function(value) {
 
   colors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger']
@@ -40,6 +45,12 @@ Vue.filter('pluralize', function(item, value) {
     return item + "s"
   }
 })
+
+Vue.filter("icon", function(value) {
+	return "fas fa-" + value
+})
+
+
 
 
 
@@ -78,4 +89,18 @@ Binder = new Vue({
     ]
   }
 
+})
+
+navbar = new Vue({
+	el: "#navbar",
+	data: {
+		isActive: [true, false, false, false, false]
+	},
+	methods: {
+		active: function(x) {
+			this.isActive = [false, false, false, false, false];
+
+			this.isActive[x] = true;
+ 		}
+	}
 })

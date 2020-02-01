@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
-    
-    <link rel="stylesheet" href="upload.css"></link>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="index.css"></link>
 
     <meta data="viewport-scale=1"></meta>
 
@@ -19,38 +23,45 @@
       </div>
     </div>
 
+	<div id="recents" class="container-fluid px-3">
+		<div v-for="item in recents">
+	</div>
 
-	<footer>
-		<tab>
-			<icon name='home'></icon>
-			<button @click="go('home')"></button>
-		</tab>
+	<div class="container-fluid fixed-bottom" id="navbar">
+		<div class='row'>
+			<div class="col-2 offset-1" :class="{active: isActive[0]}" @click="active(0)">
+				<i class="fas fa-home"></i>
+				<p>My Binder</p>
+			</div>
 
-		<tab>
-			<icon name='home'></icon>
-			<button @click="go('home')"></button>
-		</tab>
+			<div class="col-2" :class="{active: isActive[1]}" @click="active(1)">
+				<i class="fas fa-calendar-alt"></i>
+				<p>Calendar</p>
+			</div>
 
-		<tab>
-			<icon name='home'></icon>
-			<button @click="go('home')"></button>
-		</tab>
+			<div class="col-2" :class="{active: isActive[2]}" @click="active(2)">
+				<i class="fas fa-plus"></i>
+				<p>Add</p>
+			</div>
 
-		<tab>
-			<icon name='home'></icon>
-			<button @click="go('home')"></button>
-		</tab>
+			<div class="col-2" :class="{active: isActive[3]}" @click="active(3)">
+				<i class="fas fa-search"></i>
+				<p>Search</p>
+			</div>
 
-		<tab>
-			<icon name='home'></icon>
-			<button @click="go('home')"></button>
-		</tab>
-
-	</footer>
-
-
+			<div class="col-2" :class="{active: isActive[4]}" @click="active(4)">
+				<i class="fas fa-cog"></i>
+				<p>Settings</p>
+			</div>
+		</div>
+	</div>
 
 
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="index.js"></script>
