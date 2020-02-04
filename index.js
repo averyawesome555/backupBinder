@@ -132,3 +132,59 @@ recentFiles = new Vue({
 		]
 	}
 })
+
+recentFolders = new Vue({
+	el: "#recentFolders",
+	data: {
+		recentFolders: [
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Homework Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Getem Bois",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Yote tote yute",
+				lastAccessed: "10 days ago"
+			}
+		]
+	}
+})
+
+starredItems = new Vue({
+	el: "#starredItems",
+	data: {
+		starredItems: [
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Homework Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Getem Bois",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Yote tote yute",
+				lastAccessed: "10 days ago"
+			}
+		]
+	}
+})
