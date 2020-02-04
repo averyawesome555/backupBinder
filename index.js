@@ -104,3 +104,31 @@ navbar = new Vue({
  		}
 	}
 })
+
+recentFiles = new Vue({
+	el: "#recentFiles",
+	data: {
+		recentFiles: [
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Homework Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Getem Bois",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Jan 2020",
+				lastAccessed: "10 days ago"
+			},
+			{
+				thumbnail: "https://getuikit.com/v2/docs/images/placeholder_600x400.svg",
+				fileName: "Yote tote yute",
+				lastAccessed: "10 days ago"
+			}
+		]
+	}
+})

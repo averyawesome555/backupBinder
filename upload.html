@@ -15,17 +15,23 @@
   </head>
   <body>
 
-    <div id="binder">
+    <!-- <div id="binder">
       <div v-for="folder in folders">
 
         <folder :meta=folder></folder>
 
       </div>
-    </div>
+    </div> -->
 
-	<div id="recents" class="container-fluid px-3">
-		<div v-for="item in recents">
-	</div>
+	<h1>Recent Files</h1>
+
+	<div class="scrollWrapper">
+		<div id="recentFiles" class="container-fluid px-3 scroller">
+			<div v-for="item in recentFiles" class="recentTab">
+				<img class="recentThumb" :src="item.thumbnail"></img>
+				<div class="recentText">{{item.fileName}}</div>
+			</div>
+		</div>
 
 	<div class="container-fluid fixed-bottom" id="navbar">
 		<div class='row'>
