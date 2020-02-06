@@ -170,7 +170,7 @@ $(document).ready(function(){
             processData: false,
             timeout: 60000
         });
-        
+
     function isFirstTimeLogin() {
         $.ajax({
         type: "GET",
@@ -202,7 +202,7 @@ $(document).ready(function(){
         });
     }
     }
-    
+
     function getFileInfoByID(fileID) {
       return new Promise(function(resolve, reject) {
         $.ajax({
@@ -227,7 +227,7 @@ $(document).ready(function(){
         });
       }); // end of promise
     }
-    
+
     function getItemID(folderName) {
         return new Promise(function(resolve, reject) {
             $.ajax({
@@ -280,12 +280,12 @@ $(document).ready(function(){
                 var binderContentDict = $.parseJSON($("#binderContent").text());
                 binderContentDict[classID] = classContent;
                 $("#binderContent").text(JSON.stringify(binderContentDict));
-                var result = $("#binderContent").text();
-                console.log("Result from listAll2: " + result.toString());
-                resolve(result);
               }
             }).catch(function(error) {console.log(error)});
           } // end of for-loop
+          var result = $("#binderContent").text();
+          console.log("Result from listAll2: " + result.toString());
+          resolve(result);
         }).catch(function(error) {console.log(error)});
       }); // end of promise
     }
