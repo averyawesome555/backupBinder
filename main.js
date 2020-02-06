@@ -33,6 +33,7 @@ $(document).ready(function(){
   // hey guys, this is austin
 
     $("#uploadFile").on("click", function (e) {
+		$("#files").click();
 //        var file = $("#files")[0].files[0];
         var folder = window.prompt("To which class would you like add this? Enter that class' name below, or enter \"Misc\" to add this to the \"Miscellaneous\" folder: ");
         if (folder == "Misc") { folder = "Miscellaneous";}
