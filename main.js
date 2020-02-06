@@ -320,7 +320,13 @@ $(document).ready(function(){
 		    
 
             var result2 = $.parseJSON($("#binderContent").text());
-            var temp = $("key").innerHTML;
+            var keyName = $("key").innerHTML;
+
+			result2[className + "(" + keyName + ")"] = result2[keyName];
+
+			delete result2[keyName];
+
+			$("#binderContent").text(JSON.stringify(result2))
 
           })
         }
