@@ -257,6 +257,35 @@ $(document).ready(function(){
         }); // end of promise
     }
 
+    function getItemNameByID(itemID) {
+        return new Promise(function(resolve, reject) {
+            $.ajax({
+            type: "GET",
+            beforeSend: function(request) {
+                request.setRequestHeader("Authorization", "Bearer" + " " + localStorage.getItem("accessToken"));
+                },
+                url: "https://www.googleapis.com/drive/v3/files",
+                success: function (data) {
+                    console.log(data);
+                    for (i = 0; i < data.files.length; i++) {
+                      if (data.files[i].id == itemID) {
+                        resolve(data.files[i].name);
+                      } // end of if
+                    } // end of for-loop
+                },
+                error: function (error) {
+                    console.log("Folder " + folderName + " not found!");
+                    console.log(error);
+                    reject(error);
+                },
+                cache: false,
+                contentType: false,
+                processData: false,
+                timeout: 60000
+            }); // end of AJAX call
+        }); // end of promise
+    }
+
     // plan for Ryan's method"
     // 1. Create dictoriuionary <class name, jsonContent>
     // 2. Get children IDs for all class folders
@@ -282,8 +311,11 @@ $(document).ready(function(){
           }).catch(function(error) {console.log(error)});
         } // end of for-loop
         var result = $("#binderContent").text();
-        for (item in result) {
-          // hey
+        for (var key in result) {
+          getItemNameByID(key).then(function(className) {
+            var result2 = $.parseJSON($("#binderContent").text());
+            var temp = 
+          })
         }
         console.log("Result from listAll2: " + result.toString());
       }).catch(function(error) {console.log(error)});
