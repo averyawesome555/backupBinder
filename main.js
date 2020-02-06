@@ -282,6 +282,9 @@ $(document).ready(function(){
           }).catch(function(error) {console.log(error)});
         } // end of for-loop
         var result = $("#binderContent").text();
+        for (item in result) {
+          // hey
+        }
         console.log("Result from listAll2: " + result.toString());
       }).catch(function(error) {console.log(error)});
     }
