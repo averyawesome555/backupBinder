@@ -1,4 +1,4 @@
-
+console.log(listAll())
 
 
 Vue.filter('icon', function(fileType) {
