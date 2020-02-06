@@ -310,11 +310,18 @@ $(document).ready(function(){
             }
           }).catch(function(error) {console.log(error)});
         } // end of for-loop
-        var result = $("#binderContent").text();
+        var result = $.parseJSON($("#binderContent").text());
         for (var key in result) {
+
+		  $("key").innerHTML = key;
+
           getItemNameByID(key).then(function(className) {
+
+		    
+
             var result2 = $.parseJSON($("#binderContent").text());
-            var temp = 
+            var temp = $("key").innerHTML;
+
           })
         }
         console.log("Result from listAll2: " + result.toString());
