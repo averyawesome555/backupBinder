@@ -1,7 +1,7 @@
 $(document).ready(function(){
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
-    const redirect_uri = "https://backupbinder.netlify.com/upload.html" // replace with your redirect_uri;
+    const redirect_uri = "https://backupbinder.netlify.com/reminders.html" // replace with your redirect_uri;
     const client_secret = "vVkHKV4hswLANEHqI-CYCzX3"; // replace with your client secret
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";

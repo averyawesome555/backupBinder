@@ -1,4 +1,6 @@
 
+
+
 Vue.filter('icon', function(fileType) {
 	s = "fa-"
 
