@@ -6,7 +6,7 @@ $(document).ready(function(){
 
      // redirect_uri of the project
 
-     var redirect_uri = "https://backupbinder.netlify.com/upload.html";
+     var redirect_uri = "https://backupbinder.netlify.com/reminders.html";
 
      // scope of the project
 
