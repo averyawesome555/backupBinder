@@ -1,0 +1,125 @@
+#navbar {
+	position: absolute;
+	bottom: 0;
+	z-index: 10;
+	width: 100vw;
+	height: 160px;
+
+}
+
+#navbar div {
+
+	padding: 30px;
+
+	font-size: 42px;
+
+	display: inline-block;
+	width: 33%;
+
+	color: white;
+	text-align: center;
+
+	
+}
+
+#navbar div.left {
+	text-align: left;
+}
+
+#navbar div.right {
+	text-align: right;
+}
+
+#navbar span {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #007bff;
+	text-align: center;
+	line-height: 100px;
+}
+
+#accordionExample button{
+	font-size: 48px;
+}
+
+.card-body {
+	font-size: 36px;
+}
+
+.card-header h2{
+	float: left;
+}
+
+.card-header h2.second {
+	float: right;
+}
+
+
+
+.card-body p {
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+.card-body p i {
+	margin-right: 15px;
+}
+
+.card-body p .right {
+	float: right;
+}
+
+
+.modal-dialog {
+  max-width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  width: 100% !important;
+  background-color: transparent;
+}
+
+#results {
+	margin: 15px;
+	padding: 20px;
+
+	font-size: 48px;
+
+	background-color: white;
+	border-radius: 300px;
+}
+
+.modal-body button {
+	width: 100vw;
+	height: 160px;
+	position: absolute;
+	bottom: 0;
+	color: white;
+	background-color: transparent;
+	text-align: left;
+	font-size: 72px;
+	border: none;
+	box-shadow: none;
+	display: inline-block;
+}
+
+.modal-body button i {
+	margin-bottom: 7px;
+	margin-left: 7px;
+			display: inline-block;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: #007bff;
+	text-align: center;
+	line-height: 100px;
+}
