@@ -354,4 +354,6 @@ $(document).ready(function(){
         });
     }
 
+	listAll()
+
 });
