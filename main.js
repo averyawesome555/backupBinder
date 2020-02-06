@@ -6,7 +6,6 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
-    //$("#binderContent").hide();
 
 
     $.ajax({
@@ -265,29 +264,26 @@ $(document).ready(function(){
     // 4. QED
 
     function listAll() {
-      return new Promise(function(resolve, reject) {
-        getFilesFromFolder("Backup Binder").then(function(classes) {
-          for (i = 0; i < classes[1].files.length; i++) {
-            getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
-              var classID = classwork[0];
-              var classContent = classwork[1].files;
-              if ($("#binderContent").text() == "") { // if binderContent is empty
-                var dict = {};
-                dict[classID] = classContent;
-                $("#binderContent").text(JSON.stringify(dict));
-              }
-              else { // if it's not empty
-                var binderContentDict = $.parseJSON($("#binderContent").text());
-                binderContentDict[classID] = classContent;
-                $("#binderContent").text(JSON.stringify(binderContentDict));
-              }
-            }).catch(function(error) {console.log(error)});
-          } // end of for-loop
-          var result = $("#binderContent").text();
-          console.log("Result from listAll2: " + result.toString());
-          resolve(result);
-        }).catch(function(error) {console.log(error)});
-      }); // end of promise
+      getFilesFromFolder("Backup Binder").then(function(classes) {
+        for (i = 0; i < classes[1].files.length; i++) {
+          getFilesFromFolder(classes[1].files[i].name).then(function(classwork) {
+            var classID = classwork[0];
+            var classContent = classwork[1].files;
+            if ($("#binderContent").text() == "") { // if binderContent is empty
+              var dict = {};
+              dict[classID] = classContent;
+              $("#binderContent").text(JSON.stringify(dict));
+            }
+            else { // if it's not empty
+              var binderContentDict = $.parseJSON($("#binderContent").text());
+              binderContentDict[classID] = classContent;
+              $("#binderContent").text(JSON.stringify(binderContentDict));
+            }
+          }).catch(function(error) {console.log(error)});
+        } // end of for-loop
+        var result = $("#binderContent").text();
+        console.log("Result from listAll2: " + result.toString());
+      }).catch(function(error) {console.log(error)});
     }
 
 
