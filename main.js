@@ -353,7 +353,7 @@ $(document).ready(function(){
 	   }).then(function(oofo) {
 		   addNamesToArray()
 		}).then(function(ehh) {
-			INIT
+			INIT()
 		})
         
       }
