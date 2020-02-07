@@ -1,4 +1,4 @@
-function INIT() {
+window.setTimeout(function() {
 
 	Vue.filter('icon', function(fileType) {
 		s = "fa-"
@@ -132,4 +132,4 @@ function INIT() {
 		}
 	})
 
-}
+}, 5000);
