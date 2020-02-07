@@ -38,6 +38,7 @@ binder = new Vue({
 		folders: function() {
 			return $("#binderContent").text();
 		}
+	}
 })
 
 Vue.filter("modalTarget", function(value) {
