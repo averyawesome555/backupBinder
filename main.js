@@ -1,33 +1,5 @@
 
 
-	$("body").on('DOMSubtreeModified', "#binderContent", function() {
-		   var result = JSON.parse( $("#binderContent").text() );
-		   console.log("RESULT ", result)
-				for (var key in result) {
-
-				console.log('key', key)
-
-				$("key").innerHTML = key;
-
-					getItemNameByID(key).then(function(className) {
-
-					
-
-						var result2 = $.parseJSON($("#binderContent").text());
-						var keyName = $("key").innerHTML;
-
-						result2[className + "(" + keyName + ")"] = result2[keyName];
-
-						delete result2[keyName];
-
-						$("#binderContent").text(JSON.stringify(result2))
-
-					})
-				}
-			console.log("Result from listAll2: " + result.toString());
-		
-	});
-
 
 
 $(document).ready(function(){
@@ -318,6 +290,34 @@ $(document).ready(function(){
             }); // end of AJAX call
         }); // end of promise
     }
+
+		$("body").on('DOMSubtreeModified', "#binderContent", function() {
+		   var result = JSON.parse( $("#binderContent").text() );
+		   console.log("RESULT ", result)
+				for (var key in result) {
+
+				console.log('key', key)
+
+				$("key").innerHTML = key;
+
+					getItemNameByID(key).then(function(className) {
+
+					
+
+						var result2 = $.parseJSON($("#binderContent").text());
+						var keyName = $("key").innerHTML;
+
+						result2[className + "(" + keyName + ")"] = result2[keyName];
+
+						delete result2[keyName];
+
+						$("#binderContent").text(JSON.stringify(result2))
+
+					})
+				}
+			console.log("Result from listAll2: " + result.toString());
+		
+	});
 
     // plan for Ryan's method"
     // 1. Create dictoriuionary <class name, jsonContent>
