@@ -36,7 +36,7 @@ window.setTimeout(function () {
 		},
 		computed: {
 			folders: function() {
-				return $("#binderContent").text();
+				return $.parseJSON( $("#binderContent").text() );
 			}
 		}
 	})
