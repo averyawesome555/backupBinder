@@ -145,6 +145,8 @@ $(document).ready(function(){
         });
     }
 
+	window["createFolder"] = createFolder
+
     function createMasterFolder() {
         var formData = new FormData();
         var metadata = {
