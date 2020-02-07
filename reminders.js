@@ -36,7 +36,7 @@ binder = new Vue({
 	},
 	computed: {
 		folders: function() {
-			return ( $.parseJSON( $("#binderContent").text() ) );
+			return ( JSON.parse( $("#binderContent").text() ) );
 		}
 	}
 })
