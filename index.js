@@ -1,3 +1,7 @@
+
+
+
+
 Vue.component('folder', {
   props: ['meta'],
   template: `
