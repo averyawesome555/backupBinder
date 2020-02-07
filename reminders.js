@@ -115,4 +115,4 @@ window.setTimeout(function () {
 		}
 	})
 
-}, 2000);
+}, 3000);
