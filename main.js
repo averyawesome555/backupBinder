@@ -30,7 +30,7 @@ $(document).ready(function(){
            //window.history.pushState({}, document.title, "/GitLoginApp/" + "upload.html");
 
            isFirstTimeLogin();
-           //listAll();
+           listAll();
         }
   });
   // hey guys, this is austin
@@ -430,6 +430,6 @@ $(document).ready(function(){
         });
     }
 
-	listAll()
+	//listAll()
 
 });
