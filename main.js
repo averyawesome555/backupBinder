@@ -104,6 +104,7 @@ $(document).ready(function(){
       }); // end of .catch
     }
 
+	console.log("setting window variable")
 	window["uploadFileFunction"] = uploadFileFunction
 
     function createFolder(folderName) {
