@@ -39,6 +39,7 @@ function INIT() {
 
 				var p = $.parseJSON( $("#binderContent").text() )
 
+				console.log($("#binderContent").text())
 				console.log(p);
 
 				result = []
