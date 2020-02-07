@@ -293,37 +293,20 @@ $(document).ready(function(){
 
 		$("body").on('DOMSubtreeModified', "#binderContent", function() {
 		   var result = JSON.parse( $("#binderContent").text() );
-		   console.log("RESULT ", result)
-				for (var key in result) {
 
-				console.log('key', key)
+		   	getItemNameByID(key).then(function(itemName) {
+						
+				var result = JSON.parse( $("#binderContent").text() );
 
-				
-				getItemNameByID(key).then(function(k) { $("#key").text(k) } );
-
-				result[key][0] = $("#key").text();
-
+				for(var key in result) {
+					result[key][0] = itemName
 				}
 
 				$("#binderContent").text(JSON.stringify(result))
 
-				// $("#key").text(key);
+			} );
 
-				// 	getItemNameByID(key).then(function(className) {
-
-					
-
-				// 		var result2 = $.parseJSON($("#binderContent").text());
-				// 		var keyName = $("#key").innerHTML;
-
-				// 		result2[className + "(" + keyName + ")"] = result2[keyName];
-
-				// 		delete result2[keyName];
-
-				// 		$("#binderContent").text(JSON.stringify(result2))
-
-				// 	})
-				// }
+				
 		
 	});
 
