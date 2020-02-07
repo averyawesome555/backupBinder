@@ -308,6 +308,10 @@ $(document).ready(function(){
 
 				   var addName = $.parseJSON($("#binderContent").text())
 				   addName[key][0] = itemName;
+
+				   getFilesFromFolder(itemName).then(function(files) {
+					   addName[key][1] = files
+				   })
 						
 					$("#binderContent").text(
 						JSON.stringify(addName)
