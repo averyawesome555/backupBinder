@@ -351,6 +351,8 @@ $(document).ready(function(){
           }).then(function(cop) {
 			  addNamesToArray()
 			  console.log("INIT")
+			  //INIT()
+		  }).then(function() {
 			  INIT()
 		  }).catch(function(error) {console.log(error)});
         }
