@@ -7,6 +7,10 @@ $(document).ready(function(){
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
 
+	$("binderContent").change(function(e) {
+		var result = $.parseJSON($("#binderContent").text());
+		console.log("RESULT ", result)
+	})
 
     $.ajax({
         type: "POST",
@@ -293,11 +297,6 @@ $(document).ready(function(){
     // 2. Get children IDs for all class folders
     // 3. list all files in class fodlers and add to dictionary - https://stackoverflow.com/questions/24720075/how-to-get-list-of-files-by-folder-on-google-drive-api
     // 4. QED
-
-	$("binderContent").change(function(e) {
-		var result = $.parseJSON($("#binderContent").text());
-		console.log("RESULT ", result)
-	})
 
     function listAll() {
       getFilesFromFolder("Backup Binder").then(function(classes) {
