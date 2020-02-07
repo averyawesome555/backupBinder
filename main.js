@@ -312,32 +312,35 @@ $(document).ready(function(){
 			  console.log("contentDict ", JSON.stringify(binderContentDict))
             }
           }).catch(function(error) {console.log(error)});
-        } // end of for-loop
-        var result = $.parseJSON($("#binderContent").text());
-        for (var key in result) {
-
-			console.log('key', key)
-
-		  $("key").innerHTML = key;
-
-          getItemNameByID(key).then(function(className) {
-
-		    
-
-            var result2 = $.parseJSON($("#binderContent").text());
-            var keyName = $("key").innerHTML;
-
-			result2[className + "(" + keyName + ")"] = result2[keyName];
-
-			delete result2[keyName];
-
-			$("#binderContent").text(JSON.stringify(result2))
-
-          })
         }
-        console.log("Result from listAll2: " + result.toString());
-      }).catch(function(error) {console.log(error)});
-    }
+		
+	   }).catch(function(error) {console.log(error)}).then({
+		   var result = $.parseJSON($("#binderContent").text());
+				for (var key in result) {
+
+				console.log('key', key)
+
+				$("key").innerHTML = key;
+
+				getItemNameByID(key).then(function(className) {
+
+					
+
+					var result2 = $.parseJSON($("#binderContent").text());
+					var keyName = $("key").innerHTML;
+
+					result2[className + "(" + keyName + ")"] = result2[keyName];
+
+					delete result2[keyName];
+
+					$("#binderContent").text(JSON.stringify(result2))
+
+				})
+				}
+				console.log("Result from listAll2: " + result.toString());
+			})
+        
+      }
 
 
 
