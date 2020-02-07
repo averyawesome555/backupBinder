@@ -22,12 +22,55 @@
 	
 }
 
+#img {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	margin-left: -20px !important;
+	position: fixed;
+	bottom: 0
+	
+}
+
 #navbar div.left {
 	text-align: left;
 }
 
 #navbar div.right {
 	text-align: right;
+}
+
+span.right {
+	float: right;
+	margin-right: 40px;
+}
+
+#uploadModal .btn-group {
+	height: 150px;
+	position: absolute;
+	bottom: 0;
+	width: 100vw;
+	background-color: #007bff;
+	color: white;
+	font-size: 24px !important;
+}
+
+input:checked + div.fill {
+	background-color: #007bffaa;
+}
+
+div.fill {
+	width: 100vw;
+	height: 100px;
+	position: relative;
+	margin-left: -40px;
+	z-index: -1;
+}
+
+#uploadModal .btn-group button {
+	font-size: 36px !important;
+	text-align: center;
+	border: 1px solid rgb(55, 55, 55)
 }
 
 #navbar span {
@@ -112,14 +155,41 @@
 	display: inline-block;
 }
 
+#uploadModal {
+	//background-color: white
+	z-index: 1050;
+}
+
 .modal-body button i {
 	margin-bottom: 6px;
 	margin-left: 6px;
-			display: inline-block;
+	display: inline-block;
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 	background-color: #007bff;
 	text-align: center;
 	line-height: 100px;
+}
+
+.xoxo label {
+	width: 100% !important;
+	display: block;
+	color: white;
+	z-index: 10
+}
+
+.xoxo .bg {
+	width: 100vw;
+	height: 100vh !important;
+	position: fixed;
+	margin-left: -20px;
+	top: 0;
+	background-color: rgba(55, 55, 55, 0.8);
+	z-index: 10;
+}
+
+.xoxo ul {
+	list-style: none;
+	margin-top: 20px;
 }

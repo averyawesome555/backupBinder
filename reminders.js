@@ -9,6 +9,10 @@ Vue.filter('icon', function(fileType) {
 	}
 })
 
+Vue.filter('src', function(val) {
+	return "src(" + val + ")"
+})
+
 binder = new Vue({
 	el: "#accordionExample",
 	data: {
@@ -59,5 +63,55 @@ var search = new Vue({
 		searchTerm: "",
 		results: [],
 		modalActive: false,
+	}
+})
+
+
+upload = new Vue({
+	el: "#uploadModal",
+	data: {
+		folders: [
+			{
+				name: "History",
+				contents: 6,
+			},
+			{
+				name: "English",
+				contents: 4
+			},
+			{
+				name: "Calculus",
+				contents: 18
+			}
+		],
+		location: "",
+		currentFile: "",
+	},
+	methods: {
+		previewFile: function() {
+			console.log("fileUploaded")
+			var preview = document.querySelector('#img');
+			var file    = document.querySelector('#files').files[0];
+			var reader  = new FileReader();
+
+			reader.onloadend = function () {
+				preview.src = reader.result
+			}
+
+			if (file) {
+				reader.readAsDataURL(file);
+			} else {
+				preview.src = "";
+			}
+		},
+		src: function(src) {
+			return 'src("' + src + '")'
+		},
+		upload: function() {
+			$('#files').click()
+		},
+		clear: function() {
+			$("#img")[0].src = ""
+		}
 	}
 })

@@ -15,7 +15,7 @@
   </head>
   <body>
 
-<div class="modal fade show" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -38,21 +38,54 @@
   </div>
 </div>
 
-<input id="files" type="file" name="files[]" style="display: none;"/>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <input id="files" type="file" name="files[]" @change="previewFile" style="display: none;"/>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<div class="input-group">
+			<div class="input-group-prepend xoxo" style="font-size: 64px" style="">
+				<div class="bg">
+					<ul>
+						<li v-for="folder in folders">
+							<input type="radio" :id="folder.name" :name="folder.name" :value="folder.name" v-model="location" style="display: none">
+							<div class="fill"></div>
+							<label :for="folder.name">{{folder.name}}<span class="right">{{folder.contents}}</span></label>
+						</li>
+					</ul>
+
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" @click="clear">Cancel</button>
+						<button type="button" @click="upload" class="btn btn-secondary">Retake Picture</button>
+						<button type="button" class="btn btn-secondary">Upload File</button>
+					</div>
+				</div>
 
 
-<video autoplay></video>
+				<img id="img" width="100%" class="img-responsive" src="" />
+			</div>
+		</div>
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <video autoplay></video>
 
 <script>
 const constraints = {
-  video: true
+  video: {
+	  facingMode: "user"
+  }
 };
 
 const video = document.querySelector('video');
 
 navigator.mediaDevices.getUserMedia(constraints).
   then((stream) => {video.srcObject = stream});
-</script>
+</script> -->
 
 
 
@@ -102,7 +135,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 	  </div>
 
 	  <div class="middle">
-		  <span id="uploadFile">
+		  <span id="uploadFile" data-toggle="modal" data-target="uploadModal">
 		  	<i class="fas fa-plus"></i>
 		  </span>
 	  </div>
