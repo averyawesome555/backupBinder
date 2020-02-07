@@ -36,7 +36,7 @@ binder = new Vue({
 	},
 	computed: {
 		folders: function() {
-			return $("#binderContent").text();
+			return "x";
 		}
 	}
 })
