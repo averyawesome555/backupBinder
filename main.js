@@ -300,6 +300,8 @@ $(document).ready(function(){
 					result[key][0] = itemName
 				}
 
+				console.log("RESULT: ", result)
+
 				$("#binderContent").text(JSON.stringify(result))
 
 			} );
