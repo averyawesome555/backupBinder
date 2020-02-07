@@ -292,8 +292,6 @@ $(document).ready(function(){
     }
 
 		$("body").on('DOMSubtreeModified', "#binderContent", function() {
-		   var result = JSON.parse( $("#binderContent").text() );
-
 		   	getItemNameByID(key).then(function(itemName) {
 						
 				var result = JSON.parse( $("#binderContent").text() );
