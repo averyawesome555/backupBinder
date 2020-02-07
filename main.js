@@ -316,6 +316,8 @@ $(document).ready(function(){
         var result = $.parseJSON($("#binderContent").text());
         for (var key in result) {
 
+			console.log('key', key)
+
 		  $("key").innerHTML = key;
 
           getItemNameByID(key).then(function(className) {
