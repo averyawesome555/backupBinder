@@ -354,6 +354,7 @@ $(document).ready(function(){
 		   addNamesToArray()
 		}).then(function(ehh) {
 			INIT()
+			console.log("INIT")
 		})
         
       }
