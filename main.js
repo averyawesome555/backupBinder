@@ -300,7 +300,10 @@ $(document).ready(function(){
 
 					result[key][0] = getItemNameByID(key).then(function(c) { return c} );
 
+
 				}
+
+				$("#binderContent").text(JSON.stringify(result))
 
 				// $("#key").text(key);
 
