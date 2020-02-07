@@ -7,7 +7,7 @@ $(document).ready(function(){
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
 
-	$("binderContent").change(function(e) {
+	$("#binderContent").change(function(e) {
 		var result = $.parseJSON($("#binderContent").text());
 		console.log("RESULT ", result)
 	})
