@@ -78,22 +78,13 @@ window.setTimeout(function() {
 	upload = new Vue({
 		el: "#uploadModal",
 		data: {
-			folders: [
-				{
-					name: "History",
-					contents: 6,
-				},
-				{
-					name: "English",
-					contents: 4
-				},
-				{
-					name: "Calculus",
-					contents: 18
-				}
-			],
 			location: "",
 			currentFile: "",
+		},
+		computed: {
+			folders: function() {
+				return binder.folders;
+			}
 		},
 		methods: {
 			previewFile: function() {
