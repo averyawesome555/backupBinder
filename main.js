@@ -300,6 +300,8 @@ $(document).ready(function(){
 
 					result[key][0] = getItemNameById(key).then(function(c) { return c} );
 
+				}
+
 				// $("#key").text(key);
 
 				// 	getItemNameByID(key).then(function(className) {
