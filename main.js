@@ -298,23 +298,25 @@ $(document).ready(function(){
 
 				console.log('key', key)
 
-				$("#key").text(key);
+					result[key][0] = getItemNameById(key).then(function(c) { return c} );
 
-					getItemNameByID(key).then(function(className) {
+				// $("#key").text(key);
+
+				// 	getItemNameByID(key).then(function(className) {
 
 					
 
-						var result2 = $.parseJSON($("#binderContent").text());
-						var keyName = $("#key").innerHTML;
+				// 		var result2 = $.parseJSON($("#binderContent").text());
+				// 		var keyName = $("#key").innerHTML;
 
-						result2[className + "(" + keyName + ")"] = result2[keyName];
+				// 		result2[className + "(" + keyName + ")"] = result2[keyName];
 
-						delete result2[keyName];
+				// 		delete result2[keyName];
 
-						$("#binderContent").text(JSON.stringify(result2))
+				// 		$("#binderContent").text(JSON.stringify(result2))
 
-					})
-				}
+				// 	})
+				// }
 		
 	});
 
