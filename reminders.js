@@ -43,7 +43,7 @@ function INIT() {
 				for (var key in p) {
 					if (p.hasOwnProperty(key)) {
 						result.push({
-							name: p[key][0],
+							name: p[key],
 							id: key,
 						})
 					}
