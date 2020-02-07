@@ -279,7 +279,7 @@ $(document).ready(function(){
                     } // end of for-loop
                 },
                 error: function (error) {
-                    console.log("Folder " + folderName + " not found!");
+                    //console.log("Folder " + folderName + " not found!");
                     console.log(error);
                     reject(error);
                 },
