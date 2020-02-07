@@ -298,14 +298,14 @@ $(document).ready(function(){
 
 				console.log('key', key)
 
-				$("key").innerHTML = key;
+				$("#key").text(key);
 
 					getItemNameByID(key).then(function(className) {
 
 					
 
 						var result2 = $.parseJSON($("#binderContent").text());
-						var keyName = $("key").innerHTML;
+						var keyName = $("#key").innerHTML;
 
 						result2[className + "(" + keyName + ")"] = result2[keyName];
 
@@ -315,7 +315,6 @@ $(document).ready(function(){
 
 					})
 				}
-			console.log("Result from listAll2: " + result2.toString());
 		
 	});
 
