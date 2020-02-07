@@ -125,4 +125,26 @@ window.setTimeout(function() {
 		}
 	})
 
+	folderModal = new Vue({
+		el: "#folderModal",
+		data: {
+			folderName: ""
+		},
+		computed: {
+			existingFolders: function() {
+				res = []
+
+				x = binder.folders;
+
+				for(i in x) {
+					if(x.hasOwnProperty(i)) {
+						res.push(x[i].name)
+					}
+				}
+
+				return res;
+			}
+		}
+	})
+
 }, 5000);

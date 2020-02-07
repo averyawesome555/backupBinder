@@ -70,19 +70,17 @@ navigator.mediaDevices.getUserMedia(constraints).
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <input class="form-control form-control-lg" type="text" v-model="searchTerm" placeholder="Search" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;"></input>
+        <input class="form-control form-control-lg" type="text" v-model="folderName" placeholder="Search" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;">
+		
+		
+		
+		</input>
 		<br>
 
 		<br>
-		<div id="results">
-			<p> BRuh! </p>
-		</div>
+		
 
-		<button data-dismiss="modal">
-			
-			<i class="fas fa-times"></i>
-			
-		</button>
+		<button class="full-length">{{folderName}}</button>
 		
       </div>
     </div>
