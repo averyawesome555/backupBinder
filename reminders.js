@@ -89,7 +89,6 @@ upload = new Vue({
 	},
 	methods: {
 		previewFile: function() {
-			console.log("fileUploaded")
 			var preview = document.querySelector('#img');
 			var file    = document.querySelector('#files').files[0];
 			var reader  = new FileReader();
@@ -112,6 +111,15 @@ upload = new Vue({
 		},
 		clear: function() {
 			$("#img")[0].src = ""
+		},
+		fileUpload: function() {
+
+			var file = $("#files")[0].files[0];
+        	var folder = this.currentFile;
+        	for (i = 0; i < $("#files")[0].files.length; i++) {
+        		uploadFile($("#files")[0].files[i], folder);
+			}
+
 		}
 	}
 })
