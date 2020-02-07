@@ -36,7 +36,19 @@ function INIT() {
 		},
 		computed: {
 			folders: function() {
-				return $.parseJSON( $("#binderContent").text() );
+
+				var p = $.parseJSON( $("#binderContent").text() )
+				result = []
+
+				for (var key in p) {
+					if (p.hasOwnProperty(key)) {
+						result.push({
+							name: p[key][0],
+							id: key,
+						})
+					}
+				}
+				return result;
 			}
 		}
 	})
