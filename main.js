@@ -273,6 +273,7 @@ $(document).ready(function(){
                 success: function (data) {
                     console.log(data);
                     for (i = 0; i < data.files.length; i++) {
+						console.log("hittin' that for");
                       if (data.files[i].id == itemID) {
 						console.log("resolved from getItemNameByID");
                         resolve(data.files[i].name);
@@ -304,9 +305,7 @@ $(document).ready(function(){
 					result[key][0] = itemName
 				}
 
-				console.log("RESULT: ", result)
-
-				$("#binderContent").text(JSON.stringify(result))
+				console.log("RESULT: ", result);
 
 			} );
 
