@@ -128,7 +128,7 @@ window.setTimeout(function() {
 	folderModal = new Vue({
 		el: "#folderModal",
 		data: {
-			folderName: ""
+			folderName: "Name"
 		},
 		computed: {
 			existingFolders: function() {
@@ -143,6 +143,12 @@ window.setTimeout(function() {
 				}
 
 				return res;
+			}
+		},
+		methods: {
+			makeFolder: function() {
+				createFolder(this.folderName)
+				this.folderName = "Name"
 			}
 		}
 	})
