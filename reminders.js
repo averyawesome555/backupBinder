@@ -34,11 +34,11 @@ binder = new Vue({
 			}
 		]
 	},
-	// computed: {
-	// 	folders: function() {
-	// 		return ( JSON.parse( $("#binderContent").text() ) );
-	// 	}
-	// }
+	computed: {
+		folders: function() {
+			return $("#binderContent").text();
+		}
+	}
 })
 
 Vue.filter("modalTarget", function(value) {
