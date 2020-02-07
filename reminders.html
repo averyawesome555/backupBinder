@@ -50,7 +50,7 @@
 						<li v-for="folder in folders">
 							<input type="radio" :id="folder.name" :name="folder.name" :value="folder.name" v-model="location" style="display: none">
 							<div class="fill"></div>
-							<label :for="folder.name">{{folder.name}}<span class="right">{{folder.contents}}</span></label>
+							<label :for="folder.name">{{folder.name}}<span class="right">{{folder.contents.length}}</span></label>
 						</li>
 					</ul>
 

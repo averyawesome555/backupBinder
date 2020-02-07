@@ -111,7 +111,7 @@ window.setTimeout(function() {
 			clear: function() {
 				$("#img")[0].src = ""
 			},
-			fileUpload: function() {
+			uploadFile: function() {
 
 				var file = $("#files")[0].files[0];
 				var folder = this.currentFile;
