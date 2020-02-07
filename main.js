@@ -321,6 +321,8 @@ $(document).ready(function(){
 
 			}
 
+			INIT()
+
 		   	
 
 		
@@ -353,7 +355,7 @@ $(document).ready(function(){
 			  console.log("INIT")
 			  //INIT()
 		  }).then(function() {
-			  INIT()
+			 //INIT()
 		  }).catch(function(error) {console.log(error)});
         }
 		
