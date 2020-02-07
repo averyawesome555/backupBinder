@@ -314,7 +314,7 @@ $(document).ready(function(){
           }).catch(function(error) {console.log(error)});
         }
 		
-	   }).catch(function(error) {console.log(error)}).then(function{
+	   }).catch(function(error) {console.log(error)}).then(function(oofo) {
 		   var result = $.parseJSON($("#binderContent").text());
 				for (var key in result) {
 
