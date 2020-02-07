@@ -15,30 +15,9 @@
   </head>
   <body>
 
-<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <input class="form-control form-control-lg" type="text" v-model="searchTerm" placeholder="Search" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;"></input>
-		<br>
 
-		<br>
-		<div id="results">
-			<p> BRuh! </p>
-		</div>
 
-		<button data-dismiss="modal">
-			
-			<i class="fas fa-times"></i>
-			
-		</button>
-		
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <input id="files" type="file" name="files[]" @change="previewFile" style="display: none;"/>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -69,7 +48,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 <!-- <video autoplay></video>
@@ -86,6 +65,29 @@ const video = document.querySelector('video');
 navigator.mediaDevices.getUserMedia(constraints).
   then((stream) => {video.srcObject = stream});
 </script> -->
+
+<div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <input class="form-control form-control-lg" type="text" v-model="searchTerm" placeholder="Search" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;"></input>
+		<br>
+
+		<br>
+		<div id="results">
+			<p> BRuh! </p>
+		</div>
+
+		<button data-dismiss="modal">
+			
+			<i class="fas fa-times"></i>
+			
+		</button>
+		
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -149,7 +151,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 <div id="navbar">
 	  <div class="left">
-		  <span @click="makeFolder">
+		  <span @click="makeFolder" data-toggle="modal" data-target="#folderModal">
 		  	<i class="fas fa-plus"></i>
 		  </span>
 	  </div>
