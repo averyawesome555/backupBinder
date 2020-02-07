@@ -118,7 +118,7 @@ window.setTimeout(function() {
 				var file = $("#files")[0].files;
 				var folder = this.lcoation;
 				console.log(uploadFile)
-				uploadFile($("#files")[0].files, folder);
+				uploadFileFunction($("#files")[0].files, folder);
 
 			}
 		}

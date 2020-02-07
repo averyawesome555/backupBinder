@@ -62,7 +62,7 @@ $(document).ready(function(){
         return url.split("?")[0].split("#")[0];
     }
 
-    function uploadFile(file, folder) {
+    function uploadFileFunction(file, folder) {
     getItemID(folder).then(function(result) {
           var formData = new FormData();
           var metadata = {
