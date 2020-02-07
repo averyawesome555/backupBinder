@@ -113,12 +113,13 @@ window.setTimeout(function() {
 			},
 			uploadFileV: function() {
 
-				console.log("crube cringe")
 
 				var file = $("#files")[0].files;
 				var folder = this.lcoation;
-				console.log(uploadFile)
-				uploadFileFunction($("#files")[0].files, folder);
+
+				console.log(file)
+
+				uploadFileFunction(file, folder);
 
 			}
 		}
