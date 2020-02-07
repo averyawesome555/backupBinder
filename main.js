@@ -304,8 +304,9 @@ $(document).ready(function(){
 
 				   console.log("secondl yayer")
 
-				   var addName = $.parseJSON($("#binderContent").text())
 				   console.log(key)
+
+				   var addName = $.parseJSON($("#binderContent").text())
 				   addName[key][0] = itemName;
 						
 					$("#binderContent").text(
