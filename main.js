@@ -1,7 +1,7 @@
 
 
 	$("body").on('DOMSubtreeModified', "#binderContent", function() {
-		   var result = $.parseJSON($("#binderContent").text());
+		   var result = JSON.parse( $("#binderContent").text() );
 		   console.log("RESULT ", result)
 				for (var key in result) {
 
