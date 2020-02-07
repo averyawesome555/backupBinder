@@ -315,7 +315,7 @@ $(document).ready(function(){
 
 					})
 				}
-			console.log("Result from listAll2: " + result.toString());
+			console.log("Result from listAll2: " + result2.toString());
 		
 	});
 
