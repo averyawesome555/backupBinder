@@ -274,6 +274,7 @@ $(document).ready(function(){
                     console.log(data);
                     for (i = 0; i < data.files.length; i++) {
 						console.log("hittin' that for");
+						console.log(data.files[i].id, "  ", itemID)
                       if (data.files[i].id == itemID) {
 						console.log("resolved from getItemNameByID");
                         resolve(data.files[i].name);
