@@ -1,3 +1,11 @@
+	$("#binderContent").change(function(e) {
+		console.log("sumthin ghappenned")
+		var result = $.parseJSON($("#binderContent").text());
+		console.log("RESULT ", result)
+	})
+
+
+
 $(document).ready(function(){
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
@@ -6,11 +14,6 @@ $(document).ready(function(){
     const scope = "https://www.googleapis.com/auth/drive.file";
     var access_token= "";
     const client_id = "146136756337-jt4b3n285gl57vthk47jtdq18nlib6rh.apps.googleusercontent.com"; // replace it with your client id
-
-	$("#binderContent").change(function(e) {
-		var result = $.parseJSON($("#binderContent").text());
-		console.log("RESULT ", result)
-	})
 
     $.ajax({
         type: "POST",
