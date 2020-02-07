@@ -69,7 +69,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 <div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-body" style="height: 100vh; background-color: green;">
+      <div class="modal-body" style="height: 100vh;">
         <input class="form-control form-control-lg" type="text" v-model="folderName" placeholder="Name" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;">
 		
 		
@@ -80,7 +80,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 		<br>
 		
 
-		<button class="full-length" style="background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: relative; bottom: 0 !important; left: -20px;">Add folder {{folderName}}</button>
+		<button class="full-length" style="background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: fixed; bottom: 0px !important; right: 4px">Add folder {{folderName}}</button>
 		
       </div>
     </div>
