@@ -32,7 +32,7 @@ binder = new Vue({
 				fileType: "img",
 				lastAccessed: "seconds ago"
 			}
-		]
+		],
 	},
 	computed: {
 		folders: function() {
@@ -42,6 +42,7 @@ binder = new Vue({
 	methods: {
 		folders: function() {
 			return $.parseJSON ( $("#binderContent").text() );
+			this.$forceUpdate()
 		}
 	}
 })
