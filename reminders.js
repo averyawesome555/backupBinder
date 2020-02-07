@@ -36,15 +36,8 @@ binder = new Vue({
 	},
 	computed: {
 		folders: function() {
-			return "x";
+			return $("#binderContent").text();
 		}
-	},
-	methods: {
-		folders: function() {
-			return $.parseJSON ( $("#binderContent").text() );
-			this.$forceUpdate()
-		}
-	}
 })
 
 Vue.filter("modalTarget", function(value) {
