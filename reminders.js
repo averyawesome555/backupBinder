@@ -16,20 +16,6 @@ Vue.filter('src', function(val) {
 binder = new Vue({
 	el: "#accordionExample",
 	data: {
-		folders: [
-			{
-				name: "History",
-				contents: 6
-			},
-			{
-				name: "English",
-				contents: 4
-			},
-			{
-				name: "Calculus",
-				contents: 18
-			}
-		],
 		contents: [
 			{
 				name: "India Homework 1886",
@@ -47,6 +33,11 @@ binder = new Vue({
 				lastAccessed: "seconds ago"
 			}
 		]
+	},
+	computed: {
+		folders: function() {
+			return $.parseJSON( $("#binderContent") );
+		}
 	}
 })
 
