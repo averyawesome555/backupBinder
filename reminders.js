@@ -113,8 +113,10 @@ window.setTimeout(function() {
 			},
 			uploadFileV: function() {
 
+				console.log("crube cringe")
+
 				var file = $("#files")[0].files;
-				var folder = this.currentFile;
+				var folder = this.lcoation;
 				console.log(uploadFile)
 				uploadFile($("#files")[0].files, folder);
 
