@@ -309,13 +309,13 @@ $(document).ready(function(){
               var binderContentDict = $.parseJSON($("#binderContent").text());
               binderContentDict[classID] = classContent;
               $("#binderContent").text(JSON.stringify(binderContentDict));
-			  console.log("contentDict ", JSON.stringify(binderContentDict))
             }
           }).catch(function(error) {console.log(error)});
         }
 		
-	   }).catch(function(error) {console.log(error)}).then(function(oofo) {
+	   }).then(function(oofo) {
 		   var result = $.parseJSON($("#binderContent").text());
+		   console.log("RESULT ", result)
 				for (var key in result) {
 
 				console.log('key', key)
