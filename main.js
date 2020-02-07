@@ -1,8 +1,10 @@
-	$("#binderContent").on("change", function() {
-		console.log("sumthin ghappenned")
+
+
+	$("body").on('DOMSubtreeModified', "#binderContent", function() {
+    		console.log("sumthin ghappenned")
 		var result = $.parseJSON($("#binderContent").text());
 		console.log("RESULT ", result)
-	})
+	});
 
 
 
