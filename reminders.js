@@ -113,11 +113,10 @@ window.setTimeout(function() {
 			},
 			uploadFileV: function() {
 
-				var file = $("#files")[0].files[0];
+				var file = $("#files")[0].files;
 				var folder = this.currentFile;
-				for (i = 0; i < $("#files")[0].files.length; i++) {
-					uploadFile($("#files")[0].files[i], folder);
-				}
+				console.log(uploadFile)
+				uploadFile($("#files")[0].files, folder);
 
 			}
 		}
