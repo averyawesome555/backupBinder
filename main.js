@@ -298,8 +298,10 @@ $(document).ready(function(){
 
 				console.log('key', key)
 
-					result[key][0] = getItemNameByID(key).then(function(c) { return c} );
+				
+				getItemNameByID(key).then(function(k) { $("#key").text(k) } );
 
+				result[key][0] = $("#key").text();
 
 				}
 
