@@ -114,7 +114,7 @@ window.setTimeout(function() {
 			uploadFileV: function() {
 
 
-				var file = $("#files")[0].files;
+				var file = $("#files")[0].files[0];
 				var folder = this.lcoation;
 
 				console.log(file)
