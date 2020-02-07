@@ -127,7 +127,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 
 
-  <div id="navbar">
+  <!-- <div id="navbar">
 	  <div class="left">
 		  <span data-toggle="modal" data-target="#searchModal">
 		  	<i class="fas fa-search"></i>
@@ -143,6 +143,23 @@ navigator.mediaDevices.getUserMedia(constraints).
 	  <div class="right">
 		  <span>
 		  	<i class="fas fa-cog"></i>
+		  </span>
+	  </div>
+  </div> -->
+
+<div id="navbar">
+	  <div class="left">
+		  <span @click="makeFolder">
+		  	<i class="fas fa-plus"></i>
+		  </span>
+	  </div>
+
+	  <div class="middle">
+	  </div>
+
+	  <div class="right">
+		   <span id="uploadFile" data-toggle="modal" data-target="uploadModal">
+		  	<i class="fas fa-plus"></i>
 		  </span>
 	  </div>
   </div>
