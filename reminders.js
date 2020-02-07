@@ -38,6 +38,9 @@ function INIT() {
 			folders: function() {
 
 				var p = $.parseJSON( $("#binderContent").text() )
+
+				console.log(p);
+
 				result = []
 
 				for (var key in p) {
