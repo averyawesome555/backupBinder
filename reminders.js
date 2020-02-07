@@ -38,6 +38,11 @@ binder = new Vue({
 		folders: function() {
 			return "x";
 		}
+	},
+	methods: {
+		folders: function() {
+			return $.parseJSON ( $("#binderContent").text() );
+		}
 	}
 })
 
