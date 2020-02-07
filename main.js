@@ -344,7 +344,9 @@ $(document).ready(function(){
               binderContentDict[classID] = classContent;
               $("#binderContent").text(JSON.stringify(binderContentDict));
             }
-          }).catch(function(error) {console.log(error)});
+          }).then(function(cop) {
+			  addNamesToArray()
+		  }).catch(function(error) {console.log(error)});
         }
 		
 		
