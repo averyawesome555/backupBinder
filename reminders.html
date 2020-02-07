@@ -93,7 +93,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 		<div class="card" v-for="folder in folders">
 			<div class="card-header">
 				<h2 class="mb-0">
-					<button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#' + folder[0]" aria-expanded="true" :aria-controls="folder[0]">
+					<button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#' + folder.name" aria-expanded="true" :aria-controls="folder.name">
 					{{folder.name}}
 					</button>
 				</h2>
@@ -105,9 +105,9 @@ navigator.mediaDevices.getUserMedia(constraints).
 				</h2>
 			</div>
 
-			<div :id="folder[0]" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div :id="folder.name" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				<div class="card-body">
-					<p v-for="item in folder[1]">
+					<p v-for="item in folder.contents">
 							<i class="fas" :class="item.fileType | icon"></i>
 							<span class="name">{{item.name}}</span>
 
