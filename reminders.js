@@ -117,7 +117,7 @@ function INIT() {
 				var file = $("#files")[0].files[0];
 				var folder = this.lcoation;
 
-				console.log(file)
+				console.log(this.location)
 
 				uploadFileFunction(file, folder);
 
