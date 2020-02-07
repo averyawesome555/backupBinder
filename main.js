@@ -326,8 +326,6 @@ $(document).ready(function(){
 
 			}
 
-			INIT()
-
 		   	
 
 		
@@ -370,6 +368,8 @@ $(document).ready(function(){
 		})
         
       }
+
+	  window["listAll"] = listAll
 
 
 
