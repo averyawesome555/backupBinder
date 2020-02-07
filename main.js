@@ -274,6 +274,7 @@ $(document).ready(function(){
                     console.log(data);
                     for (i = 0; i < data.files.length; i++) {
                       if (data.files[i].id == itemID) {
+						console.log("resolved from getItemNameByID");
                         resolve(data.files[i].name);
                       } // end of if
                     } // end of for-loop
@@ -309,7 +310,6 @@ $(document).ready(function(){
 
 			} );
 
-				
 		
 	});
 
@@ -337,6 +337,7 @@ $(document).ready(function(){
             }
           }).catch(function(error) {console.log(error)});
         }
+		
 		
 	   }).then(function(oofo) {
 		//    var result = $.parseJSON($("#binderContent").text());
