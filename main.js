@@ -360,8 +360,8 @@ $(document).ready(function(){
             }, // explanation of partial responses: https://developers.google.com/drive/api/v3/performance#partial-response
               url: "https://www.googleapis.com/drive/v3/files?q='"+ folderID + "'+in+parents",
               success: function (data) {
-                console.log("Data from getFilesFromFolder():")
-                console.log(data);
+                //console.log("Data from getFilesFromFolder():")
+                //console.log(data);
                 var arr = [folderID, data];
                 resolve(arr);
 
