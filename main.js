@@ -62,8 +62,10 @@ $(document).ready(function(){
         return url.split("?")[0].split("#")[0];
     }
 
+
+
     function uploadFileFunction(file, folder) {
-    getItemID(folder).then(function(result) {
+    	getItemID(folder).then(function(result) {
           var formData = new FormData();
           var metadata = {
               "name": file.name,
@@ -101,6 +103,8 @@ $(document).ready(function(){
 
       }); // end of .catch
     }
+
+	window["uploadFileFunction"] = uploadFileFunction
 
     function createFolder(folderName) {
         getItemID("Backup Binder").then(function(result) {
