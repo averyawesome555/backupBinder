@@ -114,7 +114,7 @@ function INIT() {
 			uploadFileV: function() {
 
 
-				var file = $("#files")[0].files[0];
+				var file = document.querySelector('#files').files[0];
 				var folder = this.lcoation;
 
 				console.log(this.location)
