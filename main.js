@@ -298,7 +298,7 @@ $(document).ready(function(){
 
 				console.log('key', key)
 
-					result[key][0] = getItemNameById(key).then(function(c) { return c} );
+					result[key][0] = getItemNameByID(key).then(function(c) { return c} );
 
 				}
 
