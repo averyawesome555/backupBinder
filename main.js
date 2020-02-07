@@ -320,7 +320,7 @@ $(document).ready(function(){
 		   	
 
 		
-	});
+	}
 
     // plan for Ryan's method"
     // 1. Create dictoriuionary <class name, jsonContent>
