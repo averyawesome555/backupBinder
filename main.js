@@ -305,24 +305,27 @@ $(document).ready(function(){
 			var result = JSON.parse( $("#binderContent").text() );
 			for(var key in result) {
 
-				getItemNameByID(key).then(function(itemName) {
+				if (result.hasOwnProperty(key)) {
 
-				   console.log("secondl yayer")
+					getItemNameByID(key).then(function(itemName) {
 
-				   console.log(key)
+					console.log("secondl yayer")
 
-				   var addName = $.parseJSON($("#binderContent").text())
-				   addName[key][0] = itemName;
+					console.log(key)
 
-				//    getFilesFromFolder(itemName).then(function(files) {
-				// 	   addName[key][1] = files
-				//    })
-						
-					$("#binderContent").text(
-						JSON.stringify(addName)
-					)
+					var addName = $.parseJSON($("#binderContent").text())
+					addName[key][0] = itemName;
 
-				} );
+					//    getFilesFromFolder(itemName).then(function(files) {
+					// 	   addName[key][1] = files
+					//    })
+							
+						$("#binderContent").text(
+							JSON.stringify(addName)
+						)
+
+					} );
+				}
 
 			}
 
