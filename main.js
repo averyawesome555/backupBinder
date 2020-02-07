@@ -309,7 +309,7 @@ $(document).ready(function(){
               var binderContentDict = $.parseJSON($("#binderContent").text());
               binderContentDict[classID] = classContent;
               $("#binderContent").text(JSON.stringify(binderContentDict));
-			  console.log(JSON.stringify(binderContentDict))
+			  console.log("contentDict ", JSON.stringify(binderContentDict))
             }
           }).catch(function(error) {console.log(error)});
         } // end of for-loop
