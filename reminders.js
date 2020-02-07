@@ -45,7 +45,7 @@ function INIT() {
 						result.push({
 							name: p[key],
 							id: key,
-							contents: [];
+							contents: []
 						})
 					}
 				}
