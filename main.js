@@ -294,6 +294,11 @@ $(document).ready(function(){
     // 3. list all files in class fodlers and add to dictionary - https://stackoverflow.com/questions/24720075/how-to-get-list-of-files-by-folder-on-google-drive-api
     // 4. QED
 
+	$("binderContent").change(function(e) {
+		var result = $.parseJSON($("#binderContent").text());
+		console.log("RESULT ", result)
+	})
+
     function listAll() {
       getFilesFromFolder("Backup Binder").then(function(classes) {
         for (i = 0; i < classes[1].files.length; i++) {
@@ -314,31 +319,31 @@ $(document).ready(function(){
         }
 		
 	   }).then(function(oofo) {
-		   var result = $.parseJSON($("#binderContent").text());
-		   console.log("RESULT ", result)
-				for (var key in result) {
+		//    var result = $.parseJSON($("#binderContent").text());
+		//    console.log("RESULT ", result)
+		// 		for (var key in result) {
 
-				console.log('key', key)
+		// 		console.log('key', key)
 
-				$("key").innerHTML = key;
+		// 		$("key").innerHTML = key;
 
-				getItemNameByID(key).then(function(className) {
+		// 			getItemNameByID(key).then(function(className) {
 
 					
 
-					var result2 = $.parseJSON($("#binderContent").text());
-					var keyName = $("key").innerHTML;
+		// 				var result2 = $.parseJSON($("#binderContent").text());
+		// 				var keyName = $("key").innerHTML;
 
-					result2[className + "(" + keyName + ")"] = result2[keyName];
+		// 				result2[className + "(" + keyName + ")"] = result2[keyName];
 
-					delete result2[keyName];
+		// 				delete result2[keyName];
 
-					$("#binderContent").text(JSON.stringify(result2))
+		// 				$("#binderContent").text(JSON.stringify(result2))
 
-				})
-				}
-				console.log("Result from listAll2: " + result.toString());
-			})
+		// 			})
+		// 		}
+		// 	console.log("Result from listAll2: " + result.toString());
+		})
         
       }
 
