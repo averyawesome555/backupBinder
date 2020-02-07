@@ -296,19 +296,26 @@ $(document).ready(function(){
 
 		$("body").on('DOMSubtreeModified', "#binderContent", function() {
 			console.log("editted")
-		   	getItemNameByID(key).then(function(itemName) {
+
+			var result = JSON.parse( $("#binderContent").text() );
+			for(var key in result) {
+
+				getItemNameByID(key).then(function(itemName) {
 
 				   console.log("secondl yayer")
+
+				   var addName = $.parseJSON($("#binderContent").text())
+				   addName[key][0] = itemName;
 						
-				var result = JSON.parse( $("#binderContent").text() );
+					$("#binderContent").text(
+						JSON.stringify(addName)
+					)
 
-				for(var key in result) {
-					result[key][0] = itemName
-				}
+				} );
 
-				console.log("RESULT: ", result);
+			}
 
-			} );
+		   	
 
 		
 	});
