@@ -358,16 +358,15 @@ $(document).ready(function(){
             }
           }).then(function(cop) {
 			  addNamesToArray()
-			  console.log("INIT")
 			  //INIT()
 		  }).then(function() {
-			 //INIT()
+			 addNamesToArray()
 		  }).catch(function(error) {console.log(error)});
         }
 		
 		
 	   }).then(function(oofo) {
-			
+			addNamesToArray()
 		})
         
       }
