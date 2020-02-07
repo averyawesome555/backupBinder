@@ -346,14 +346,14 @@ $(document).ready(function(){
             }
           }).then(function(cop) {
 			  addNamesToArray()
+			  console.log("INIT")
+			  INIT()
 		  }).catch(function(error) {console.log(error)});
         }
 		
 		
 	   }).then(function(oofo) {
-		   addNamesToArray()
-		   	INIT()
-			console.log("INIT")
+			
 		})
         
       }
