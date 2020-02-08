@@ -89,7 +89,7 @@ function INIT() {
 		methods: {
 			previewFile: function() {
 				var preview = document.querySelector('#img');
-				var file    = document.querySelector('#files').files[0];
+				var file    = $('#files')[0].files[0];
 				var reader  = new FileReader();
 
 				reader.onloadend = function () {
@@ -114,10 +114,10 @@ function INIT() {
 			uploadFileV: function() {
 
 
-				var file = document.querySelector('#files').files[0];
+				var file = $('#files')[0].files[0];
 				var folder = this.lcoation;
 
-				console.log(this.location)
+				console.log(file)
 
 				uploadFileFunction(file, folder);
 
