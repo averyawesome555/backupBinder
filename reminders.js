@@ -5,9 +5,11 @@ App = new Vue({
 			{
 				name: "History",
 				lastChanged: new Date(),
-				starred: false;
+				starred: false,
 				contents: [],
 			}
-		]
+		],
+		newFolderName: "",
+
 	}
 })

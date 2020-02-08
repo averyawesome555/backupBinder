@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+
+    <link rel="stylesheet" href="reminders.css"></link>
+
+    <meta data="viewport-scale=1"></meta>
+
+  </head>
+  <body>
+
+
+
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <input id="files" type="file" name="files[]" @change="previewFile" style="display: none;"/>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<div class="input-group">
+			<div class="input-group-prepend xoxo" style="font-size: 64px" style="">
+				<div class="bg">
+					<ul>
+						<li v-for="folder in binder">
+							<input type="radio" :id="folder.name" :name="folder.name" :value="folder.name" v-model="location" style="display: none">
+							<div class="fill"></div>
+							<label :for="folder.name">{{folder.name}}<span class="right">{{folder.contents.length}}</span></label>
+						</li>
+					</ul>
+
+					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" @click="clear">Cancel</button>
+						<button type="button" @click="retakePicture" class="btn btn-secondary">Retake Picture</button>
+						<button type="button" @click="uploadFile" class="btn btn-secondary">Upload File</button>
+					</div>
+				</div>
+
+
+				<img id="img" width="100%" class="img-responsive" src="" />
+			</div>
+		</div>
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <video autoplay></video>
+
+<script>
+const constraints = {
+  video: {
+	  facingMode: "user"
+  }
+};
+
+const video = document.querySelector('video');
+
+navigator.mediaDevices.getUserMedia(constraints).
+  then((stream) => {video.srcObject = stream});
+</script> -->
+
+<div class="modal fade" id="folderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body" style="height: 100vh;">
+        <input class="form-control form-control-lg" type="text" v-model="newFolderName" placeholder="Name" style="font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;">
+		
+		
+		
+		</input>
+		<br>
+
+		<br>
+		
+
+		<button class="full-length" style="background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: fixed; bottom: 0px !important; right: 4px" @click="makeFolder"><i class="fas fa-plus"></i> {{folderName}}</button>
+		
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+	<div class="accordion" id="accordionExample">
+		<div class="card" v-for="folder in binder">
+			<div class="card-header" data-toggle="collapse" :data-target="'#' + folder.name" aria-expanded="true" :aria-controls="folder.name">
+				<h2 class="mb-0">
+					<button class="btn btn-link" type="button">
+					{{folder.name}}
+					</button>
+				</h2>
+
+				<h2 class="mb-0 second">
+					<button class="btn btn-link" type="button">
+						{{folder.contents.length}}
+					</button>
+				</h2>
+			</div>
+
+			<div :id="folder.name" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+				<div class="card-body">
+					<p v-for="item in folder.contents">
+							<i class="fas" :class="item.fileType | icon"></i>
+							<span class="name">{{item.name}}</span>
+
+							<span class="right">{{item.lastViewed}}</span>
+
+							
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+
+
+
+
+
+
+  <!-- <div id="navbar">
+	  <div class="left">
+		  <span data-toggle="modal" data-target="#searchModal">
+		  	<i class="fas fa-search"></i>
+		  </span>
+	  </div>
+
+	  <div class="middle">
+		  <span id="uploadFile" data-toggle="modal" data-target="uploadModal">
+		  	<i class="fas fa-plus"></i>
+		  </span>
+	  </div>
+
+	  <div class="right">
+		  <span>
+		  	<i class="fas fa-cog"></i>
+		  </span>
+	  </div>
+  </div> -->
+
+<div id="navbar">
+	  <div class="left">
+		  <span @click="makeFolder" data-toggle="modal" data-target="#folderModal">
+		  	<i class="fas fa-plus"></i>
+		  </span>
+	  </div>
+
+	  <div class="middle">
+	  </div>
+
+	  <div class="right">
+		   <span id="uploadFile" data-toggle="modal" data-target="uploadModal">
+		  	<i class="fas fa-upload"></i>
+		  </span>
+	  </div>
+  </div>
+
+  <div id="binderContent" style="display: none;"></div>
+<div id="key" style="display: none;"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	  <!-- <script src="main.js"></script> -->
+
+	  <script src="reminders.js"></script>
+  </body>
+
+
+</html>
