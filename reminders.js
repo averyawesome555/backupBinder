@@ -117,7 +117,6 @@ function INIT() {
 				var file = $('#files')[0].files[0];
 				var folder = this.lcoation;
 
-				console.log(file)
 				var reader  = new FileReader();
 
 				reader.onloadend = function () {
@@ -126,6 +125,7 @@ function INIT() {
 
 				if (file) {
 					reader.readAsDataURL(file);
+					console.log(reader.result)
 					uploadFileFunction(reader.result, folder);
 				}
 
