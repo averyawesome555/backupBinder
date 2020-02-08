@@ -15,6 +15,8 @@
   </head>
   <body>
 
+	  <div id="app">
+
 
 
 <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,16 +29,19 @@
 				<div class="bg">
 					<ul>
 						<li v-for="folder in binder">
-							<input type="radio" :id="folder.name" :name="folder.name" :value="folder.name" v-model="location" style="display: none">
+							<input type="radio" :id="folder.name" :name="folder.name" :value="folder.name" v-model="selectedFolder" style="display: none">
 							<div class="fill"></div>
 							<label :for="folder.name">{{folder.name}}<span class="right">{{folder.contents.length}}</span></label>
 						</li>
+
 					</ul>
+
+					<input class="form-control form-control-lg" type="text" v-model="selectedName" placeholder="Name" style="width: 80vw; margin-left: 10vw; position: relative; bottom: -200px; font-size: 48px; border-radius: 100px; padding: 40px; padding-bottom: 45px;">
 
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal" @click="clear">Cancel</button>
 						<button type="button" @click="retakePicture" class="btn btn-secondary">Retake Picture</button>
-						<button type="button" @click="uploadFile" class="btn btn-secondary">Upload File</button>
+						<button type="button" data-dismiss="modal" @click="uploadFile" class="btn btn-secondary" :disabled="!isDisabled()">Upload File</button>
 					</div>
 				</div>
 
@@ -80,7 +85,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 		<br>
 		
 
-		<button class="full-length" style="background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: fixed; bottom: 0px !important; right: 4px" @click="makeFolder"><i class="fas fa-plus"></i> {{folderName}}</button>
+		<button class="full-length" data-dismiss="modal" style="background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: fixed; bottom: 0px !important; right: 4px" @click="makeFolder"><i class="fas fa-plus"></i> {{newFolderName}}</button>
 		
       </div>
     </div>
@@ -91,7 +96,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 	<div class="accordion" id="accordionExample">
 		<div class="card" v-for="folder in binder">
-			<div class="card-header" data-toggle="collapse" :data-target="'#' + folder.name" aria-expanded="true" :aria-controls="folder.name">
+			<div class="card-header" data-toggle="collapse" :data-target="folder.name | id" aria-expanded="true" :aria-controls="folder.name">
 				<h2 class="mb-0">
 					<button class="btn btn-link" type="button">
 					{{folder.name}}
@@ -105,16 +110,31 @@ navigator.mediaDevices.getUserMedia(constraints).
 				</h2>
 			</div>
 
-			<div :id="folder.name" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+			<div :id="folder.name | identified" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 				<div class="card-body">
-					<p v-for="item in folder.contents">
-							<i class="fas" :class="item.fileType | icon"></i>
+					<p v-for="item in folder.contents" :data-target='item.name | id' data-toggle="modal">
+							<i class="fas" :class="'fa-' + item.fileType"></i>
 							<span class="name">{{item.name}}</span>
 
 							<span class="right">{{item.lastViewed}}</span>
 
 							
 					</p>
+					<div v-for="item in folder.contents">
+						<div class="modal" tabindex="-1" role="dialog" :id="item.name | identified">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img :id="(folder.name + ' ' + item.name) | identified" style="width: 100%; height: 100%" :src="item.src" />
+      </div>
+      <div class="modal-footer">
+        
+        <button class="full-length" @click="item.lastViewed = 'minutes ago'" data-dismiss="modal" style="font-size: 96px; background-color: #007bff; text-align: center; height: 150px; width: 100vw; display: block; position: fixed; bottom: 0px !important; right: 4px; color: white"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -149,7 +169,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 
 <div id="navbar">
 	  <div class="left">
-		  <span @click="makeFolder" data-toggle="modal" data-target="#folderModal">
+		  <span data-toggle="modal" data-target="#folderModal">
 		  	<i class="fas fa-plus"></i>
 		  </span>
 	  </div>
@@ -158,7 +178,7 @@ navigator.mediaDevices.getUserMedia(constraints).
 	  </div>
 
 	  <div class="right">
-		   <span id="uploadFile" data-toggle="modal" data-target="uploadModal">
+		   <span id="uploadFile" data-toggle="modal" @click="retakePicture" data-target="#uploadModal">
 		  	<i class="fas fa-upload"></i>
 		  </span>
 	  </div>
@@ -166,6 +186,8 @@ navigator.mediaDevices.getUserMedia(constraints).
 
   <div id="binderContent" style="display: none;"></div>
 <div id="key" style="display: none;"></div>
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
