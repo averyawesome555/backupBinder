@@ -118,8 +118,16 @@ function INIT() {
 				var folder = this.lcoation;
 
 				console.log(file)
+				var reader  = new FileReader();
 
-				uploadFileFunction(file, folder);
+				reader.onloadend = function () {
+					preview.src = reader.result
+				}
+
+				if (file) {
+					reader.readAsDataURL(file);
+					uploadFileFunction(reader.result, folder);
+				}
 
 			}
 		}
