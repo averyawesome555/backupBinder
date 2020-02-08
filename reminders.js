@@ -119,9 +119,15 @@ App = new Vue({
 					fileType: "img"
 				},
 				{
-					name: "SAT Questions 3",
-					lastViewed: "2 weeks ago",
-					src: "img/3SAT.jpg",
+					name: "Writing Contract",
+					lastViewed: "minutes ago ",
+					src: "img/writing.jpg",
+					fileType: "img"
+				},
+				{
+					name: "Track List",
+					lastViewed: "3 days ago",
+					src: "img/trk.jpg",
 					fileType: "img"
 				},
 				]
