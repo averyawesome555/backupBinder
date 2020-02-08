@@ -120,13 +120,12 @@ function INIT() {
 				var reader  = new FileReader();
 
 				reader.onloadend = function () {
-					preview.src = reader.result
+					console.log(reader.result)
+					uploadFileFunction(reader.result, folder);
 				}
 
 				if (file) {
 					reader.readAsDataURL(file);
-					console.log(reader.result)
-					uploadFileFunction(reader.result, folder);
 				}
 
 			}
